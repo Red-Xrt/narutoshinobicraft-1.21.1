@@ -3,7 +3,7 @@ package narutoshinobicraft.common.jutsu.helpers;
 import java.util.Map;
 import net.minecraft.resources.ResourceLocation;
 import narutoshinobicraft.common.data.attachments.PlayersChakra;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackState;
+import narutoshinobicraft.common.data.component.JutsuStackState;
 
 public class JutsuChargeModifiers {
     private JutsuChargeModifiers() {}

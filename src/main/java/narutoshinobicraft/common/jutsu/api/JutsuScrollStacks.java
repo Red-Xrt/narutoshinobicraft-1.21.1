@@ -2,9 +2,9 @@ package narutoshinobicraft.common.jutsu.api;
 
 import java.util.List;
 import narutoshinobicraft.NarutoShinobiCraft;
+import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.JutsuScrollItem;
 import narutoshinobicraft.common.jutsu.cast.JutsuCastValidator;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

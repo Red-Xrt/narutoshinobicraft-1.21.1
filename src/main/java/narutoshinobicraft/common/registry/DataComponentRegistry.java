@@ -3,7 +3,7 @@ package narutoshinobicraft.common.registry;
 import com.mojang.serialization.Codec;
 import java.util.List;
 import narutoshinobicraft.NarutoShinobiCraft;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackState;
+import narutoshinobicraft.common.data.component.JutsuStackState;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;

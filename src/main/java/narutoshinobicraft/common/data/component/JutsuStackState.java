@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.stack;
+package narutoshinobicraft.common.data.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

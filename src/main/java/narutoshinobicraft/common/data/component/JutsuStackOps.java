@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.stack;
+package narutoshinobicraft.common.data.component;
 
 import java.util.HashMap;
 import java.util.List;

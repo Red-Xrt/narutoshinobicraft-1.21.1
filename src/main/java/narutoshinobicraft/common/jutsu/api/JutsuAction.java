@@ -1,7 +1,6 @@
 package narutoshinobicraft.common.jutsu.api;
 
-import narutoshinobicraft.common.jutsu.stack.JutsuContext;
-
+import narutoshinobicraft.common.data.component.JutsuContext;
 import net.minecraft.world.item.ItemStack;
 
 public interface JutsuAction {

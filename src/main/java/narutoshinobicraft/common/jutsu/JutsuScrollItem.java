@@ -1,13 +1,14 @@
 package narutoshinobicraft.common.jutsu;
 
 import java.util.List;
+
+import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.cast.CastOutcome;
 import narutoshinobicraft.common.jutsu.cast.JutsuCastExecutor;
 import narutoshinobicraft.common.jutsu.cast.JutsuCastValidator;
 import narutoshinobicraft.common.jutsu.cast.JutsuCastValidator.UseGate;
 import narutoshinobicraft.common.jutsu.helpers.JutsuChargeEffects;
 import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.support.JutsuScrollTooltip;
 import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.client.Minecraft;

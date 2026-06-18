@@ -1,11 +1,11 @@
 package narutoshinobicraft.common.jutsu.cast;
 
 import narutoshinobicraft.common.data.attachments.PlayersChakra;
+import narutoshinobicraft.common.data.component.JutsuContext;
+import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.api.JutsuDefinition;
 import narutoshinobicraft.common.jutsu.helpers.JutsuChargeModifiers;
 import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
-import narutoshinobicraft.common.jutsu.stack.JutsuContext;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.support.JutsuScrollSupport;
 import narutoshinobicraft.common.network.payloads.JutsuCastSuccessPayload;
 import narutoshinobicraft.common.registry.AttachmentRegistry;

@@ -1,7 +1,8 @@
 package narutoshinobicraft.common.jutsu.cast;
 
 import javax.annotation.Nullable;
-import narutoshinobicraft.common.jutsu.stack.JutsuStackOps;
+
+import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.registry.AttachmentRegistry;
 import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.network.chat.Component;
