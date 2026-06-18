@@ -7,12 +7,15 @@ import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
 import narutoshinobicraft.common.jutsu.stack.JutsuContext;
 import narutoshinobicraft.common.jutsu.stack.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.support.JutsuScrollSupport;
+import narutoshinobicraft.common.network.payloads.JutsuCastSuccessPayload;
 import narutoshinobicraft.common.registry.AttachmentRegistry;
 import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 @SuppressWarnings("null")
 public final class JutsuCastExecutor {
@@ -96,6 +99,8 @@ public final class JutsuCastExecutor {
         if (!creative) {
             chakra.consumeChakra(chakraCost);
         }
+
+        PacketDistributor.sendToPlayer((ServerPlayer) player, new JutsuCastSuccessPayload(jutsuId));
 
         long cooldownAfter = JutsuStackOps.getCooldownEnd(stack, jutsuId);
         if (cooldownAfter <= gameTime && cooldownAfter == cooldownBefore) {

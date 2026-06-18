@@ -5,9 +5,11 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import narutoshinobicraft.NarutoShinobiCraft;
+import narutoshinobicraft.common.network.payloads.JutsuCastSuccessPayload;
 import narutoshinobicraft.common.network.payloads.SyncBattleExpPayload;
 import narutoshinobicraft.common.network.payloads.SyncChakraPayload;
 import narutoshinobicraft.common.network.payloads.SyncPlayerVariantPayload;
+import narutoshinobicraft.common.network.handler.client.HandlerJutsuCastSuccess;
 import narutoshinobicraft.common.network.handler.client.HandlerSyncBattleExp;
 import narutoshinobicraft.common.network.handler.client.HandlerSyncChakra;
 import narutoshinobicraft.common.network.handler.client.HandlerSyncNinjaVariant;
@@ -36,5 +38,10 @@ public class NetworkRegistry {
             SyncPlayerVariantPayload.TYPE, 
             SyncPlayerVariantPayload.STREAM_CODEC, 
             HandlerSyncNinjaVariant::handler);
+
+        registrar.playToClient(
+            JutsuCastSuccessPayload.TYPE,
+            JutsuCastSuccessPayload.STREAM_CODEC,
+            HandlerJutsuCastSuccess::handler);
     }
 }
