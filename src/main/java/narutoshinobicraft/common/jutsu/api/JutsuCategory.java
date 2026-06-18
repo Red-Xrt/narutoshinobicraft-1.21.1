@@ -1,0 +1,33 @@
+package narutoshinobicraft.common.jutsu.api;
+
+//TODO: temporary solution
+public enum JutsuCategory {
+	NINJUTSU,
+	DOTON,
+	FUTON,
+	KATON,
+	RAITON,
+	SUITON,
+	INTON,
+	YOTON,
+	JINTON,
+	MOKUTON,
+	JITON,
+	IRYO,
+	HYOTON,
+	BAKUTON,
+	SHAKUTON,
+	BYAKUGAN,
+	SHARINGAN,
+	RINNEGAN,
+	RANTON,
+	FUTTON,
+	YOOTON,
+	SHIKOTSUMYAKU,
+	KUCHIYOSE,
+	TENSEIGAN,
+	SENJUTSU,
+	SIXPATHSENJUTSU,
+	KEKKEIMORA;
+}
+

@@ -1,0 +1,884 @@
+{
+  "amaterasu": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:amaterasu",
+        "stream": false
+      }
+    ]
+  },
+  "shinratensei": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:shinratensei",
+        "stream": false
+      }
+    ]
+  },
+  "chibakutensei": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:chibakutensei",
+        "stream": false
+      }
+    ]
+  },
+  "byakugan": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:byakugan neji",
+        "stream": false
+      }
+    ]
+  },
+  "furryroar": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:chewbacca sound byte",
+        "stream": false
+      }
+    ]
+  },
+  "kamuisfx": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kamui sound efect ",
+        "stream": false
+      }
+    ]
+  },
+  "monstergrowl": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:monster growl",
+        "stream": false
+      }
+    ]
+  },
+  "koh_spawn": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:koh_spawn",
+        "stream": false
+      }
+    ]
+  },
+  "hakkerokujuuyonshou": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:hakke_rokujuu_yonshou",
+        "stream": false
+      }
+    ]
+  },
+  "hakkeshokaiten": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:hakkeshokaiten",
+        "stream": false
+      }
+    ]
+  },
+  "hakkekusho": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:hakkekusho",
+        "stream": false
+      }
+    ]
+  },
+  "majinaguri": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:majinaguri",
+        "stream": false
+      }
+    ]
+  },
+  "hand_shoot": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_hand_press",
+        "stream": false
+      }
+    ]
+  },
+  "nagiharai": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_nagiharai",
+        "stream": false
+      }
+    ]
+  },
+  "80godspunch": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:eightygodspunch",
+        "stream": false
+      }
+    ]
+  },
+  "kaguya_finaltsb": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bigtruthseekerball",
+        "stream": false
+      }
+    ]
+  },
+  "dojutsu_activate": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:dojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "banshotenin": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:banshotenin",
+        "stream": false
+      }
+    ]
+  },
+  "sekizo": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:sekizo",
+        "stream": false
+      }
+    ]
+  },
+  "yagai": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:yagai",
+        "stream": false
+      }
+    ]
+  },
+  "hirudora": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:hirudora",
+        "stream": false
+      }
+    ]
+  },
+  "howl_youth": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:howlyouth",
+        "stream": false
+      }
+    ]
+  },
+  "crow_call": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:call",
+        "stream": false
+      }
+    ]
+  },
+  "genkaihakurinojutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:jinton_genkaihakurinojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "suiton_suiryuudan": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:suiton_suiryuudan",
+        "stream": false
+      }
+    ]
+  },
+  "kirigakurenojutsu": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kirigakurenojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "rasenshuriken": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rasenshuriken",
+        "stream": false
+      }
+    ]
+  },
+  "wind": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:wind",
+        "stream": false
+      }
+    ]
+  },
+  "rasenshuriken_explode": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rasenshuriken_explode",
+        "stream": false
+      }
+    ]
+  },
+  "poof": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:poof",
+        "stream": false
+      }
+    ]
+  },
+  "rasengan_start": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rasengan_start",
+        "stream": false
+      }
+    ]
+  },
+  "sharingansfx": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:sharingansfx",
+        "stream": false
+      }
+    ]
+  },
+  "genjutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:genjutsu",
+        "stream": false
+      }
+    ]
+  },
+  "laser_long": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:laser_long",
+        "stream": false
+      }
+    ]
+  },
+  "kagebunshin": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kagebushin",
+        "stream": false
+      }
+    ]
+  },
+  "suironojutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:suironojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "bullet": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bullet",
+        "stream": false
+      }
+    ]
+  },
+  "bullet_impact": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bullet_impact",
+        "stream": false
+      }
+    ]
+  },
+  "rocks": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rocks",
+        "stream": false
+      }
+    ]
+  },
+  "rinbo_hengoku": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rinbo_hengoku",
+        "stream": false
+      }
+    ]
+  },
+  "ground_charge": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_hakai_charge_ground",
+        "stream": false
+      }
+    ]
+  },
+  "jutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:jutsu",
+        "stream": false
+      }
+    ]
+  },
+  "hiding_in_ash": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:hiding_in_ash",
+        "stream": false
+      }
+    ]
+  },
+  "bijudama": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bijudama",
+        "stream": false
+      }
+    ]
+  },
+  "tengaishinsei": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:tengaishinsei",
+        "stream": false
+      }
+    ]
+  },
+  "sando_no_jutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:doton_sando_no_jutsu",
+        "stream": false
+      }
+    ]
+  },
+  "yominuma": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:doton_yominuma",
+        "stream": false
+      }
+    ]
+  },
+  "suikodannojutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:suiton_suikodannojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "daibakusuishoha": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:suiton_daibakusuishoha",
+        "stream": false
+      }
+    ]
+  },
+  "sabakusoso": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:sabakusoso",
+        "stream": false
+      }
+    ]
+  },
+  "spiked": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:spiked",
+        "stream": false
+      }
+    ]
+  },
+  "ice_shoot": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:ice_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "makyohyosho": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:makyohyosho",
+        "stream": false
+      }
+    ]
+  },
+  "ice_formation": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:ice_formation",
+        "stream": false
+      }
+    ]
+  },
+  "ice_shoot_small": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:ice_shoot_small",
+        "stream": false
+      }
+    ]
+  },
+  "c3": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:c3",
+        "stream": false
+      }
+    ]
+  },
+  "katsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:katsu",
+        "stream": false
+      }
+    ]
+  },
+  "hand_press": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_hand_press",
+        "stream": false
+      }
+    ]
+  },
+  "chains": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:chains",
+        "stream": false
+      }
+    ]
+  },
+  "kyuubi_howl": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kyuubi_howl",
+        "stream": false
+      }
+    ]
+  },
+  "kyuubi_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kyuubi_death",
+        "stream": false
+      }
+    ]
+  },
+  "movement": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:movement",
+        "stream": false
+      }
+    ]
+  },
+  "lasercircus": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:lasercircus",
+        "stream": false
+      }
+    ]
+  },
+  "mokujin_no_jutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:mokujin_no_jutsu",
+        "stream": false
+      }
+    ]
+  },
+  "wood_click": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:wood_click",
+        "stream": false
+      }
+    ]
+  },
+  "kairikimuso": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kairikimuso",
+        "stream": false
+      }
+    ]
+  },
+  "mindtransfer": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:mindtransfer_sfx",
+        "stream": false
+      }
+    ]
+  },
+  "shadow_sfx": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:shadow_sfx",
+        "stream": false
+      }
+    ]
+  },
+  "charging_chakra": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:charging_chakra",
+        "stream": false
+      }
+    ]
+  },
+  "charge_ground": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:charge_ground",
+        "stream": false
+      }
+    ]
+  },
+  "explosion": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:explosion",
+        "stream": false
+      }
+    ]
+  },
+  "bonecrack": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bonecrack",
+        "stream": false
+      }
+    ]
+  },
+  "katon_gokamekeku": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:katon_gokamekeku",
+        "stream": false
+      }
+    ]
+  },
+  "flamethrow": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:flamethrow",
+        "stream": false
+      }
+    ]
+  },
+  "woodspawn": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:woodspawn",
+        "stream": false
+      }
+    ]
+  },
+  "electricity": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:espark1",
+        "stream": false
+      }
+    ]
+  },
+  "chidori": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:chidori",
+        "stream": false
+      }
+    ]
+  },
+  "bugs": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:bugs",
+        "stream": false
+      }
+    ]
+  },
+  "woodgrow": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:woodgrow",
+        "stream": false
+      }
+    ]
+  },
+  "amaterasu2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:amaterasu2",
+        "stream": false
+      }
+    ]
+  },
+  "throwpunch": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_swing",
+        "stream": false
+      }
+    ]
+  },
+  "tenseiblastcharge": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:tenseiblastcharge",
+        "stream": false
+      }
+    ]
+  },
+  "laser": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_hakai_charge_hand",
+        "stream": false
+      }
+    ]
+  },
+  "magatama_spin": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:magatama_spin",
+        "stream": false
+      }
+    ]
+  },
+  "laser_short": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:gal_se_finger_laser",
+        "stream": false
+      }
+    ]
+  },
+  "intonraiha": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:intonraiha",
+        "stream": false
+      }
+    ]
+  },
+  "rasengan_during": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:rasengan_during",
+        "stream": false
+      }
+    ]
+  },
+  "windecho": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:windecho",
+        "stream": false
+      }
+    ]
+  },
+  "opengate": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:opengate",
+        "stream": false
+      }
+    ]
+  },
+  "eightgatesrelease": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:eightgatesrelease",
+        "stream": false
+      }
+    ]
+  },
+  "waterblast": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:waterblast",
+        "stream": false
+      }
+    ]
+  },
+  "kuchiyosenojutsu": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kuchiyosenojutsu",
+        "stream": false
+      }
+    ]
+  },
+  "dragon_roar": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:dragon_roar",
+        "stream": false
+      }
+    ]
+  },
+  "lightning_shoot": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:lightning_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "kirin_dialog": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:kirin_dialog",
+        "stream": false
+      }
+    ]
+  },
+  "shinsusenju": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:shinsusenju",
+        "stream": false
+      }
+    ]
+  },
+  "snake_hiss": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:snake_hiss",
+        "stream": false
+      }
+    ]
+  },
+  "dingding": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "narutoshinobicraft:ding",
+        "stream": false
+      }
+    ]
+  }
+}
