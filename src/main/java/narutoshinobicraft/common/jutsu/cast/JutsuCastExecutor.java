@@ -100,7 +100,7 @@ public final class JutsuCastExecutor {
             chakra.consumeChakra(chakraCost);
         }
 
-        PacketDistributor.sendToPlayer((ServerPlayer) player, new JutsuCastSuccessPayload(jutsuId));
+        PacketDistributor.sendToPlayersTrackingEntityAndSelf((ServerPlayer) player, new JutsuCastSuccessPayload(jutsuId, player.getId()));
 
         long cooldownAfter = JutsuStackOps.getCooldownEnd(stack, jutsuId);
         if (cooldownAfter <= gameTime && cooldownAfter == cooldownBefore) {
