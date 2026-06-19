@@ -17,6 +17,17 @@ import net.minecraft.world.level.Level;
 
 @SuppressWarnings("null")
 public final class JutsuStackOps {
+    /**
+     * Per-jutsu cooldown slot. The value is overloaded on purpose (single field, two meanings):
+     * <ul>
+     *   <li>{@code < 0} (== {@link #DEFAULT_COOLDOWN}) &rarr; the jutsu is <b>DISABLED</b> on this scroll
+     *       (not yet unlocked / toggled off). {@link #isJutsuEnabled} returns false.</li>
+     *   <li>{@code == 0} &rarr; enabled and <b>ready</b> (no active cooldown).</li>
+     *   <li>{@code > 0} &rarr; enabled; the value is the absolute game-time tick at which the cooldown
+     *       <b>ends</b>. On cooldown while {@code value > level.getGameTime()} (see {@link #isOnCooldown}).</li>
+     * </ul>
+     * Keep this contract in mind: enabling/disabling and "ready vs on cooldown" all share this one number.
+     */
     public static final long DEFAULT_COOLDOWN = -1L;
 
     private JutsuStackOps() {}

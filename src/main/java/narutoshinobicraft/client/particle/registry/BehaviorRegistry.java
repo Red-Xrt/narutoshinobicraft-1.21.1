@@ -1,41 +1,23 @@
 package narutoshinobicraft.client.particle.registry;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-
 import narutoshinobicraft.client.particle.api.ParticleBehavior;
 import narutoshinobicraft.client.particle.behavior.SmokeBehavior;
-import net.minecraft.resources.ResourceLocation;
+import narutoshinobicraft.common.registry.DispatchRegistry;
+
 
 @SuppressWarnings("null")
-public class BehaviorRegistry {
-    private static final Map<ResourceLocation, MapCodec<? extends ParticleBehavior>> BY_NAME = new HashMap<>();
-    private static final Map<MapCodec<? extends ParticleBehavior>, ResourceLocation> BY_CODEC = new HashMap<>();
+public final class BehaviorRegistry {
+    private static final DispatchRegistry<ParticleBehavior> REGISTRY =
+        new DispatchRegistry<>("behavior", ParticleBehavior::codec);
 
     static {
-        register("narutoshinobicraft:smoke_visuals", SmokeBehavior.CODEC);
+        REGISTRY.register("narutoshinobicraft:smoke_visuals", SmokeBehavior.CODEC);
+        // You can add more behaviors in here!
     }
 
-    private static void register(String name, MapCodec<? extends ParticleBehavior> codec) {
-        ResourceLocation id = ResourceLocation.parse(name);
-        BY_NAME.put(id, codec);
-        BY_CODEC.put(codec, id);
-    }
+    /** JSON dispatch codec for any behavior, keyed on the "type" field. */
+    public static final Codec<ParticleBehavior> DISPATCH_CODEC = REGISTRY.dispatchCodec;
 
-    public static final Codec<ParticleBehavior> DISPATCH_CODEC = ResourceLocation.CODEC.dispatch(
-        "type", 
-        behavior -> {
-            ResourceLocation id = BY_CODEC.get(behavior.codec());
-            if (id == null) throw new IllegalStateException("LỖI: Chưa đăng ký Behavior Type -> " + behavior.getClass().getName());
-            return id;
-        },
-        id -> {
-            MapCodec<? extends ParticleBehavior> codec = BY_NAME.get(id);
-            if (codec == null) throw new IllegalArgumentException("LỖI JSON: Không tìm thấy Behavior Type -> " + id);
-            return codec;
-        }
-    );
+    private BehaviorRegistry() {}
 }

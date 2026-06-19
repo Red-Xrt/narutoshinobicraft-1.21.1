@@ -36,11 +36,15 @@ public record JutsuParticleOptions(
             BuiltInRegistries.PARTICLE_TYPE.byNameCodec().optionalFieldOf("type").forGetter(opt -> Optional.of(opt.getType())),
             Codec.INT.listOf().optionalFieldOf("color", List.of(255, 255, 255))
                 .xmap(
-                    ints -> new Vector3f(ints.get(0) / 255.0f, ints.get(1) / 255.0f, ints.get(2) / 255.0f),
+                    // Tolerate malformed "color" lists (e.g. [255, 0]) instead of crashing the whole
+                    // particle definition with IndexOutOfBounds: any missing channel defaults to full (255).
+                    ints -> new Vector3f(
+                        (ints.size() > 0 ? ints.get(0) : 255) / 255.0f,
+                        (ints.size() > 1 ? ints.get(1) : 255) / 255.0f,
+                        (ints.size() > 2 ? ints.get(2) : 255) / 255.0f
+                    ),
                     vec -> List.of((int)(vec.x() * 255), (int)(vec.y() * 255), (int)(vec.z() * 255))
                 ).forGetter(JutsuParticleOptions::color),
-            // Base opacity (0..1). The original mod's chakra aura leaned on a very low alpha so many
-            // overlapping particles read as a soft glow instead of solid blobs. This is the knob for it.
             Codec.FLOAT.optionalFieldOf("alpha", 1.0f).forGetter(JutsuParticleOptions::alpha),
             Codec.FLOAT.optionalFieldOf("scale", 1.0f).forGetter(JutsuParticleOptions::scale),
             Codec.INT.optionalFieldOf("lifetime", 20).forGetter(JutsuParticleOptions::lifetime),

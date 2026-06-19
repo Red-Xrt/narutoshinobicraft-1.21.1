@@ -86,6 +86,31 @@ public final class JutsuCastValidator {
         return false;
     }
 
+    /**
+     * Note: this intentionally does NOT bypass on instabuild — callers apply the creative bypass
+     * themselves, because some of them (e.g. {@link #canActivateJutsu}) still require a real,
+     * registered jutsu even in creative.
+     */
+    @Nullable
+    private static UseDenyReason firstDenyReason(ItemStack stack, @Nullable ResourceLocation jutsuId, Player player) {
+        if (jutsuId == null || !isRegistered(jutsuId) || !JutsuStackOps.getJutsuIds(stack).contains(jutsuId)) {
+            return UseDenyReason.INVALID_JUTSU;
+        }
+        if (!JutsuStackOps.matchesOwner(stack, player)) {
+            return UseDenyReason.NOT_OWNER;
+        }
+        if (!JutsuStackOps.isJutsuEnabled(stack, jutsuId)) {
+            return UseDenyReason.DISABLED;
+        }
+        if (!player.getData(AttachmentRegistry.PLAYER_PROCESS).isNinja()) {
+            return UseDenyReason.NOT_NINJA;
+        }
+        if (JutsuStackOps.getXp(stack, jutsuId) < getRequiredXp(stack, jutsuId)) {
+            return UseDenyReason.INSUFFICIENT_XP;
+        }
+        return null;
+    }
+
     public static UseGate validateUse(ItemStack stack, Player player, Level level) {
         if (!level.isClientSide()) {
             JutsuStackOps.claimOwnerIfAbsent(stack, player);
@@ -97,11 +122,7 @@ public final class JutsuCastValidator {
         if (player.getAbilities().instabuild) {
             return UseGate.ALLOW;
         }
-        if (!canUseCurrentJutsu(stack, player)) {
-            return UseGate.FAIL;
-        }
-        if (JutsuStackOps.getCurrentJutsuXp(stack) < getCurrentRequiredXp(stack)
-            || !player.getData(AttachmentRegistry.PLAYER_PROCESS).isNinja()) {
+        if (firstDenyReason(stack, currentId, player) != null) {
             return UseGate.FAIL;
         }
         return validateCooldown(stack, currentId, player, level.getGameTime());
@@ -112,23 +133,7 @@ public final class JutsuCastValidator {
         if (player.getAbilities().instabuild) {
             return null;
         }
-        ResourceLocation currentId = JutsuStackOps.getCurrentJutsuId(stack);
-        if (currentId == null || !isRegistered(currentId)) {
-            return UseDenyReason.INVALID_JUTSU;
-        }
-        if (!JutsuStackOps.matchesOwner(stack, player)) {
-            return UseDenyReason.NOT_OWNER;
-        }
-        if (!JutsuStackOps.isJutsuEnabled(stack, currentId)) {
-            return UseDenyReason.DISABLED;
-        }
-        if (!player.getData(AttachmentRegistry.PLAYER_PROCESS).isNinja()) {
-            return UseDenyReason.NOT_NINJA;
-        }
-        if (JutsuStackOps.getCurrentJutsuXp(stack) < getCurrentRequiredXp(stack)) {
-            return UseDenyReason.INSUFFICIENT_XP;
-        }
-        return null;
+        return firstDenyReason(stack, JutsuStackOps.getCurrentJutsuId(stack), player);
     }
 
     public static void notifyUseDeny(Player player, ItemStack stack) {
@@ -149,11 +154,7 @@ public final class JutsuCastValidator {
         if (player.getAbilities().instabuild) {
             return true;
         }
-        if (!canUseCurrentJutsu(stack, player)) {
-            return false;
-        }
-        if (JutsuStackOps.getCurrentJutsuXp(stack) < getCurrentRequiredXp(stack)
-            || !player.getData(AttachmentRegistry.PLAYER_PROCESS).isNinja()) {
+        if (firstDenyReason(stack, currentId, player) != null) {
             return false;
         }
         return validateCooldown(stack, currentId, player, level.getGameTime()) == UseGate.ALLOW;
@@ -163,17 +164,11 @@ public final class JutsuCastValidator {
         if (!player.level().isClientSide()) {
             JutsuStackOps.claimOwnerIfAbsent(stack, player);
         }
-        if (!JutsuStackOps.getJutsuIds(stack).contains(jutsuId) || !isRegistered(jutsuId)) {
-            return InteractionResult.FAIL;
-        }
+        UseDenyReason reason = firstDenyReason(stack, jutsuId, player);
         if (player.getAbilities().instabuild) {
-            return InteractionResult.SUCCESS;
+            return reason == UseDenyReason.INVALID_JUTSU ? InteractionResult.FAIL : InteractionResult.SUCCESS;
         }
-        if (!canUseJutsu(stack, jutsuId, player)) {
-            return InteractionResult.FAIL;
-        }
-        if (JutsuStackOps.getXp(stack, jutsuId) < getRequiredXp(stack, jutsuId)
-            || !player.getData(AttachmentRegistry.PLAYER_PROCESS).isNinja()) {
+        if (reason != null) {
             return InteractionResult.FAIL;
         }
         UseGate gate = validateCooldown(stack, jutsuId, player, player.level().getGameTime());
