@@ -12,6 +12,7 @@ import narutoshinobicraft.common.registry.AttachmentRegistry;
 import narutoshinobicraft.common.registry.DataComponentRegistry;
 import narutoshinobicraft.common.registry.GameRuleRegistry;
 import narutoshinobicraft.common.registry.SoundRegistry;
+import narutoshinobicraft.common.registry.client.ParticleRegistry;
 
 @SuppressWarnings("null")
 @Mod(NarutoShinobiCraft.MODID)
@@ -23,7 +24,7 @@ public class NarutoShinobiCraft {
         AttachmentRegistry.ATTACHMENT_TYPES.register(modEventBus);
         DataComponentRegistry.DATA_COMPONENT_TYPES.register(modEventBus);
         SoundRegistry.SOUND_EVENTS.register(modEventBus);
-        
+        ParticleRegistry.PARTICLE_REGISTER.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, event -> {
             CommandsManager.register(event.getDispatcher());
         });
