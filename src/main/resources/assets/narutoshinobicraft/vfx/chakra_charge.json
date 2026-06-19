@@ -1,0 +1,18 @@
+{
+  "color": [106, 209, 255], 
+  "scale": 1.2,
+  "lifetime": 15,   
+  "is_animated": true,
+  "motion": {
+    "type": "narutoshinobicraft:linear",
+    "y_accel": 0.002,
+    "drag": 0.9,
+    "ground_drag": 0.7,
+    "bounce_on_ground": false
+  },
+  "behaviors": [
+    {
+      "type": "narutoshinobicraft:smoke_visuals"
+    }
+  ]
+}

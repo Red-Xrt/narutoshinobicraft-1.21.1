@@ -1,5 +1,8 @@
 package narutoshinobicraft.client.particle;
 
+import java.util.List;
+
+import narutoshinobicraft.client.particle.api.ParticleBehavior;
 import narutoshinobicraft.client.particle.api.ParticleMotion;
 import narutoshinobicraft.common.data.record.particles.JutsuParticleOptions;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -12,6 +15,11 @@ import net.minecraft.client.particle.ParticleProvider;
 @SuppressWarnings("null")
 public class GenericJutsuParticle extends TextureSheetParticle {
     private final ParticleMotion motion;
+    private final List<ParticleBehavior> behaviors;
+    private final float initialScale;
+    private final float initialAlpha;
+    private final SpriteSet sprites;
+    private final boolean isAnimated;
 
     protected GenericJutsuParticle(ClientLevel level, double x, double y, double z, JutsuParticleOptions options, SpriteSet spriteSet) {
         super(level, x, y, z);
@@ -21,11 +29,20 @@ public class GenericJutsuParticle extends TextureSheetParticle {
         this.quadSize = options.scale();
         this.lifetime = options.lifetime();
         this.motion = options.motion();
+        this.behaviors = options.behaviors();
+        this.initialScale = options.scale();
+        this.sprites = spriteSet;
+        this.isAnimated = options.isAnimated();
+        this.initialAlpha = this.alpha;
         this.pickSprite(spriteSet);
+        if (!this.isAnimated) {
+            this.pickSprite(this.sprites);
+        }
     }
 
     @Override
     public void tick() {
+        super.tick();
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
@@ -37,6 +54,14 @@ public class GenericJutsuParticle extends TextureSheetParticle {
 
         if (this.motion != null) {
             this.motion.apply(this);
+        }
+
+        for (ParticleBehavior behavior : this.behaviors) {
+            behavior.tick(this);
+        }
+        
+        if (this.isAnimated) {
+            this.setSpriteFromAge(this.sprites); 
         }
     }
 
@@ -53,7 +78,17 @@ public class GenericJutsuParticle extends TextureSheetParticle {
     public double getOldMotionZ() { return this.zo; }
     public int getAge() { return this.age; }
     public int getLifeTime() { return this.lifetime; }
+    public float getInitialAlpha() { return this.initialAlpha; }
+    public float getInitialScale() { return this.initialScale; }
     
+    public void setParticleScale(float targetScale){
+        this.quadSize = targetScale;
+    }
+
+    public void setAlpha(float newAlpha){
+        this.alpha = newAlpha;
+    }
+
     public void setMotion(double x, double y, double z) {
         this.xd = x;
         this.yd = y;

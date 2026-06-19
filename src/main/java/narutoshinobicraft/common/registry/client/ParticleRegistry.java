@@ -1,5 +1,7 @@
 package narutoshinobicraft.common.registry.client;
 
+import java.util.List;
+
 import org.joml.Vector3f;
 
 import com.mojang.serialization.MapCodec;
@@ -30,10 +32,29 @@ public class ParticleRegistry {
                         (buf, options) -> {
                         },
                         buf -> {
-                            return new JutsuParticleOptions(new Vector3f(1.0f, 1.0f, 1.0f), 0.0f, 0, null);
+                            return new JutsuParticleOptions(new Vector3f(1.0f, 1.0f, 1.0f), 0.0f, 0, null, List.of(), false);
                         }
                     );
                 }
             }
         );
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<JutsuParticleOptions>> SMOKE = 
+        PARTICLE_REGISTER.register("smoke", () -> new ParticleType<JutsuParticleOptions>(false) {
+                @Override
+                public MapCodec<JutsuParticleOptions> codec() {
+                    return JutsuParticleOptions.CODEC;
+                }
+
+                @Override
+                public StreamCodec<RegistryFriendlyByteBuf, JutsuParticleOptions> streamCodec() {
+                    return StreamCodec.of(
+                        (buf, options) -> {
+                        },
+                        buf -> {
+                            return new JutsuParticleOptions(new Vector3f(1.0f, 1.0f, 1.0f), 0.0f, 0, null, List.of(), false);
+                        }
+                    );
+                }
+         });
 }

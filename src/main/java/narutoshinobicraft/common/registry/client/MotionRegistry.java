@@ -24,13 +24,19 @@ public class MotionRegistry {
         BY_NAME.put(id, codec);
         BY_CODEC.put(codec, id);
     }
-
+    
     public static final Codec<ParticleMotion> DISPATCH_CODEC = ResourceLocation.CODEC.dispatch(
-        "type",
-        motion -> BY_CODEC.get(motion.codec()),
+        "type", 
+        motion -> {
+            ResourceLocation id = BY_CODEC.get(motion.codec());
+            if (id == null) {
+                throw new IllegalStateException("Does not have Motion Type for class -> " + motion.getClass().getName());
+            }
+            return id;
+        },
         id -> {
             MapCodec<? extends ParticleMotion> codec = BY_NAME.get(id);
-            if (codec == null) throw new IllegalArgumentException("Unknown particle motion type: " + id);
+            if (codec == null) throw new IllegalArgumentException("Motion Type with ID not found " + id);
             return codec;
         }
     );
