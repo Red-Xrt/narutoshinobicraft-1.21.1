@@ -3,6 +3,7 @@ package narutoshinobicraft.common.data.component;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import net.minecraft.resources.ResourceLocation;
 
@@ -12,12 +13,14 @@ public record JutsuStackState(int currentIndex, Map<ResourceLocation, Long> cool
         Codec.INT.optionalFieldOf("current_index", 0).forGetter(JutsuStackState::currentIndex),
         Codec.unboundedMap(ResourceLocation.CODEC, Codec.LONG).optionalFieldOf("cooldown", Map.of()).forGetter(JutsuStackState::coolDown),
         Codec.unboundedMap(ResourceLocation.CODEC, Codec.INT).optionalFieldOf("xp", Map.of()).forGetter(JutsuStackState::xp),
-        Codec.STRING.optionalFieldOf("owner_id", "").xmap(
-            id -> id.isBlank() ? null : UUID.fromString(id),
-            owner -> owner == null ? "" : owner.toString()
-        ).forGetter(JutsuStackState::ownerID),
+        Codec.STRING.optionalFieldOf("owner_id").xmap(
+            opt -> opt.filter(id -> !id.isBlank()).map(UUID::fromString),
+            owner -> owner.map(UUID::toString)
+        ).forGetter(state -> Optional.ofNullable(state.ownerID())),
         Codec.BOOL.optionalFieldOf("has_affinity", false).forGetter(JutsuStackState::hasAffinity)
-    ).apply(instance, JutsuStackState::new));
+    ).apply(instance, (currentIndex, coolDown, xp, ownerId, hasAffinity) ->
+        new JutsuStackState(currentIndex, coolDown, xp, ownerId.orElse(null), hasAffinity)
+    ));
 
     public static final JutsuStackState EMPTY_JUTSU_STATE = new JutsuStackState(0, Map.of(), Map.of(), null, false);
 

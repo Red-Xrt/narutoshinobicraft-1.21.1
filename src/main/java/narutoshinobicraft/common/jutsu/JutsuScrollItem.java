@@ -57,15 +57,13 @@ public class JutsuScrollItem extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int timeLeft) {
-        if (entity instanceof Player player) {
+        if (!level.isClientSide() && entity instanceof Player player) {
             float power = JutsuCastExecutor.resolvePower(stack, entity, timeLeft);
-            if (!level.isClientSide()) {
-                if (!player.getAbilities().instabuild && power <= 0.0f) {
-                    player.stopUsingItem();
-                    return;
-                }
-                player.displayClientMessage(Component.literal(String.format("%.1f", power)), true);
+            if (!player.getAbilities().instabuild && power <= 0.0f) {
+                player.stopUsingItem();
+                return;
             }
+            player.displayClientMessage(Component.literal(String.format("%.1f", power)), true);
         }
         JutsuChargeEffects.tick(level, entity, timeLeft);
     }
@@ -111,9 +109,6 @@ public class JutsuScrollItem extends Item {
             return;
         }
         JutsuStackOps.claimOwnerIfAbsent(stack, player);
-        if (!JutsuStackOps.matchesOwner(stack, player)) {
-            return;
-        }
     }
 
     @Override

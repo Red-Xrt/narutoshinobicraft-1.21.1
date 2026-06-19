@@ -4,7 +4,7 @@ import java.util.List;
 
 import narutoshinobicraft.client.particle.api.ParticleBehavior;
 import narutoshinobicraft.client.particle.api.ParticleMotion;
-import narutoshinobicraft.common.data.record.particles.JutsuParticleOptions;
+import narutoshinobicraft.client.particle.data.JutsuParticleOptions;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
@@ -33,16 +33,20 @@ public class GenericJutsuParticle extends TextureSheetParticle {
         this.initialScale = options.scale();
         this.sprites = spriteSet;
         this.isAnimated = options.isAnimated();
+        this.alpha = options.alpha();
         this.initialAlpha = this.alpha;
-        this.pickSprite(spriteSet);
-        if (!this.isAnimated) {
-            this.pickSprite(this.sprites);
+        // Vanilla physics is intentionally neutralized: Motion components own all movement.
+        this.gravity = 0.0F;
+        this.friction = 1.0F;
+        if (this.isAnimated) {
+            this.setSpriteFromAge(spriteSet);
+        } else {
+            this.pickSprite(spriteSet);
         }
     }
 
     @Override
     public void tick() {
-        super.tick();
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
@@ -52,16 +56,19 @@ public class GenericJutsuParticle extends TextureSheetParticle {
             return;
         }
 
+        // Motion is a composed component (Principle 1). When absent, drift by spawn velocity only.
         if (this.motion != null) {
             this.motion.apply(this);
+        } else {
+            this.move(this.xd, this.yd, this.zd);
         }
 
         for (ParticleBehavior behavior : this.behaviors) {
             behavior.tick(this);
         }
-        
+
         if (this.isAnimated) {
-            this.setSpriteFromAge(this.sprites); 
+            this.setSpriteFromAge(this.sprites);
         }
     }
 
@@ -77,7 +84,7 @@ public class GenericJutsuParticle extends TextureSheetParticle {
     public double getOldMotionY() { return this.yo; }
     public double getOldMotionZ() { return this.zo; }
     public int getAge() { return this.age; }
-    public int getLifeTime() { return this.lifetime; }
+    public int getLifetime() { return this.lifetime; }
     public float getInitialAlpha() { return this.initialAlpha; }
     public float getInitialScale() { return this.initialScale; }
     

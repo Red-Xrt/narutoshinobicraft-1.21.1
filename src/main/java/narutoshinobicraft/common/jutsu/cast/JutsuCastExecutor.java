@@ -118,15 +118,15 @@ public final class JutsuCastExecutor {
     }
 
     private static float getModifier(ItemStack stack, LivingEntity entity, ResourceLocation jutsuId) {
-        PlayersChakra chakra = null;
+        double ninjaLevel = 0.0d;
         boolean creativeLike = true;
         if (entity instanceof Player player) {
-            chakra = player.getData(AttachmentRegistry.PLAYER_CHAKRA);
+            ninjaLevel = player.getData(AttachmentRegistry.PLAYER_PROCESS).getNinjaLevel();
             creativeLike = player.getAbilities().instabuild;
         }
         int requiredXp = JutsuCastValidator.getRequiredXp(stack, jutsuId);
-        return JutsuChargeModifiers.combinedModifier(
-            chakra,
+        return JutsuChargeModifiers.chargeModifier(
+            ninjaLevel,
             JutsuStackOps.getState(stack),
             jutsuId,
             requiredXp,

@@ -9,10 +9,10 @@ import narutoshinobicraft.common.network.payloads.JutsuCastSuccessPayload;
 import narutoshinobicraft.common.network.payloads.SyncBattleExpPayload;
 import narutoshinobicraft.common.network.payloads.SyncChakraPayload;
 import narutoshinobicraft.common.network.payloads.SyncPlayerVariantPayload;
-import narutoshinobicraft.common.network.handler.client.HandlerJutsuCastSuccess;
-import narutoshinobicraft.common.network.handler.client.HandlerSyncBattleExp;
-import narutoshinobicraft.common.network.handler.client.HandlerSyncChakra;
-import narutoshinobicraft.common.network.handler.client.HandlerSyncNinjaVariant;
+import narutoshinobicraft.client.network.handler.HandlerJutsuCastSuccess;
+import narutoshinobicraft.client.network.handler.HandlerSyncBattleExp;
+import narutoshinobicraft.client.network.handler.HandlerSyncChakra;
+import narutoshinobicraft.client.network.handler.HandlerSyncNinjaVariant;
 
 @SuppressWarnings("null")
 @EventBusSubscriber(modid = NarutoShinobiCraft.MODID)

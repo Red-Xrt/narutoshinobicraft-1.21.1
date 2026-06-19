@@ -4,7 +4,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Locale;
+import java.util.Optional;
 import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
+import net.minecraft.resources.ResourceLocation;
 
 @SuppressWarnings("null")
 public record JutsuDefinition(
@@ -16,7 +18,8 @@ public record JutsuDefinition(
     float powerupDelay,
     float maxPowerCap,
     long defaultCooldownTicks,
-    int maxChargeTicks
+    int maxChargeTicks,
+    Optional<ResourceLocation> vfxId
 ) {
     public static final Codec<JutsuCategory> CATEGORY_CODEC = Codec.STRING.comapFlatMap(
         raw -> {
@@ -44,7 +47,8 @@ public record JutsuDefinition(
         Codec.FLOAT.optionalFieldOf("powerup_delay", 50.0f).forGetter(def -> def.powerupDelay),
         Codec.FLOAT.optionalFieldOf("max_power_cap", 0.0f).forGetter(def -> def.maxPowerCap),
         Codec.LONG.optionalFieldOf("default_cooldown_ticks", 0L).forGetter(def -> def.defaultCooldownTicks),
-        Codec.INT.optionalFieldOf("max_charge_ticks", 0).forGetter(def -> def.maxChargeTicks)
+        Codec.INT.optionalFieldOf("max_charge_ticks", 0).forGetter(def -> def.maxChargeTicks),
+        ResourceLocation.CODEC.optionalFieldOf("vfx").forGetter(def -> def.vfxId)
     ).apply(instance, JutsuDefinition::new));
 
     public static int requiredXpForRank(char rank) {
@@ -91,6 +95,21 @@ public record JutsuDefinition(
         long defaultCooldownTicks,
         int maxChargeTicks
     ) {
+        return ofRank(rank, chakraCost, type, basePower, powerupDelay, maxPowerCap,
+            defaultCooldownTicks, maxChargeTicks, null);
+    }
+
+    public static JutsuDefinition ofRank(
+        char rank,
+        double chakraCost,
+        JutsuCategory type,
+        float basePower,
+        float powerupDelay,
+        float maxPowerCap,
+        long defaultCooldownTicks,
+        int maxChargeTicks,
+        ResourceLocation vfxId
+    ) {
         return new JutsuDefinition(
             rank,
             requiredXpForRank(rank),
@@ -100,7 +119,8 @@ public record JutsuDefinition(
             powerupDelay,
             maxPowerCap,
             Math.max(0L, defaultCooldownTicks),
-            Math.max(0, maxChargeTicks)
+            Math.max(0, maxChargeTicks),
+            Optional.ofNullable(vfxId)
         );
     }
 

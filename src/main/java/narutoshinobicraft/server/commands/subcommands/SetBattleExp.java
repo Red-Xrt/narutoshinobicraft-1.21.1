@@ -1,0 +1,56 @@
+package narutoshinobicraft.server.commands.subcommands;
+
+
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.builder.ArgumentBuilder;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import narutoshinobicraft.common.data.attachments.PlayerProcess;
+import narutoshinobicraft.common.events.BattleExpChangedEvent;
+import narutoshinobicraft.common.network.payloads.SyncBattleExpPayload;
+import narutoshinobicraft.common.registry.AttachmentRegistry;
+import narutoshinobicraft.server.commands.interfaces.ICommands;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.network.PacketDistributor;
+
+@SuppressWarnings("null")
+public class SetBattleExp implements ICommands{
+    @Override
+    public String getName(){
+        return "setbattleexp";
+    }
+
+    @Override
+    public ArgumentBuilder<CommandSourceStack, ?> build() {
+        return Commands.literal(getName())
+            .then(Commands.argument("target", EntityArgument.player())
+                .then(Commands.argument("amount", IntegerArgumentType.integer(1, 100000))
+                    .executes(context -> {
+                        return executesLogic(context);
+                    })
+                )
+        );
+    }
+
+    private int executesLogic(CommandContext<CommandSourceStack> context) throws CommandSyntaxException{
+        CommandSourceStack source = context.getSource();
+        ServerPlayer targetPlayer = EntityArgument.getPlayer(context, "target");
+        int amount = IntegerArgumentType.getInteger(context, "amount");
+
+        PlayerProcess newBattleExp = targetPlayer.getData(AttachmentRegistry.PLAYER_PROCESS);
+        newBattleExp.setBattleExp(amount);
+        targetPlayer.setData(AttachmentRegistry.PLAYER_PROCESS, newBattleExp);
+        
+        PacketDistributor.sendToPlayer(targetPlayer, new SyncBattleExpPayload(newBattleExp));
+        source.sendSuccess(() -> Component.literal("Gived " + amount + " battle exp to " + targetPlayer.getScoreboardName()), true);
+        
+        NeoForge.EVENT_BUS.post(new BattleExpChangedEvent(targetPlayer, amount));
+        return 1;
+    }
+}
