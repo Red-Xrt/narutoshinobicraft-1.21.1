@@ -8,6 +8,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import narutoshinobicraft.common.jutsu.projectile.JutsuProjectile;
 import narutoshinobicraft.common.jutsu.projectile.motion.force.api.Force;
+import narutoshinobicraft.common.jutsu.projectile.motion.math.DirectionMath;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
@@ -43,16 +44,9 @@ public final class HomingForce implements Force {
             return velocity;
         }
         Vec3 desired = target.getBoundingBox().getCenter().subtract(projectile.position()).normalize();
-        double t = Math.max(0.0D, Math.min(1.0D, this.turnRate));
-        Vec3 blended = new Vec3(
-            current.x + (desired.x - current.x) * t,
-            current.y + (desired.y - current.y) * t,
-            current.z + (desired.z - current.z) * t
-        );
-        if (blended.lengthSqr() < 1.0E-6D) {
-            return velocity;
-        }
-        return blended.normalize().scale(speed);
+        float blend = (float) Math.max(0.0D, Math.min(1.0D, this.turnRate));
+        Vec3 steered = DirectionMath.slerpDirection(current, desired, blend);
+        return steered.scale(speed);
     }
 
     private LivingEntity findTarget(JutsuProjectile projectile, Vec3 heading) {

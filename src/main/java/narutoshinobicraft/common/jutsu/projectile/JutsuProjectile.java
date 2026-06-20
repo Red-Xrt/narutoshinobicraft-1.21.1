@@ -32,6 +32,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.network.syncher.SynchedEntityData;
 
+@SuppressWarnings("null")
 public class JutsuProjectile extends Entity implements ItemSupplier {
     @Nullable private ProjectileConfig config;
     @Nullable private UUID ownerUuid;
@@ -80,6 +81,10 @@ public class JutsuProjectile extends Entity implements ItemSupplier {
 
     public int getProjectileAge() {
         return this.projectileAge;
+    }
+
+    public int getLifetimeTicks() {
+        return this.config != null ? this.config.lifetime() : 100;
     }
 
     public float getPower() {

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 
 import narutoshinobicraft.common.jutsu.projectile.motion.force.impl.DragForce;
 import narutoshinobicraft.common.jutsu.projectile.motion.force.api.Force;
+import narutoshinobicraft.common.jutsu.projectile.motion.force.impl.EasingThrustForce;
 import narutoshinobicraft.common.jutsu.projectile.motion.force.impl.GravityForce;
 import narutoshinobicraft.common.jutsu.projectile.motion.force.impl.HomingForce;
 import narutoshinobicraft.common.jutsu.projectile.motion.force.impl.ThrustForce;
@@ -21,6 +22,7 @@ public final class ForceRegistry {
         REGISTRY.register("narutoshinobicraft:gravity", GravityForce.CODEC);
         REGISTRY.register("narutoshinobicraft:drag", DragForce.CODEC);
         REGISTRY.register("narutoshinobicraft:thrust", ThrustForce.CODEC);
+        REGISTRY.register("narutoshinobicraft:easing_thrust", EasingThrustForce.CODEC);
         REGISTRY.register("narutoshinobicraft:homing", HomingForce.CODEC);
     }
 

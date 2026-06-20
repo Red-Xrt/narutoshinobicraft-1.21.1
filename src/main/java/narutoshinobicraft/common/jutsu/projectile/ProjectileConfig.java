@@ -12,11 +12,6 @@ import narutoshinobicraft.common.jutsu.projectile.motion.api.EntityMotion;
 import narutoshinobicraft.common.jutsu.projectile.motion.registry.EntityMotionRegistry;
 import narutoshinobicraft.common.jutsu.projectile.behavior.registry.ProjectileBehaviorRegistry;
 
-/**
- * The Lego blueprint of a projectile: ONE motion + a list of behaviors + a list of on-hit effects +
- * basic hitbox/lifetime config. This is what JSON assembles (Phase 3) and what gets serialized onto a
- * live {@link JutsuProjectile} for persistence. For now it's also built directly in Java for testing.
- */
 @SuppressWarnings("null")
 public record ProjectileConfig(
     EntityMotion motion,

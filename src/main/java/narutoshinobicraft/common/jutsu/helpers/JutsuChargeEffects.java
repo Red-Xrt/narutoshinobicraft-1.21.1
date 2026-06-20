@@ -1,6 +1,5 @@
 package narutoshinobicraft.common.jutsu.helpers;
 
-import narutoshinobicraft.common.registry.JutsuRegistry;
 import narutoshinobicraft.common.registry.SoundRegistry;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;

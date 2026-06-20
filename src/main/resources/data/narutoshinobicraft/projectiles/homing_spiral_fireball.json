@@ -3,8 +3,18 @@
     "type": "narutoshinobicraft:physics",
     "initial_speed": 1.0,
     "forces": [
-      { "type": "narutoshinobicraft:thrust", "acceleration": 0.04, "max_speed": 1.5 },
-      { "type": "narutoshinobicraft:homing", "turn_rate": 0.2, "range": 16.0, "cone_degrees": 40.0 },
+      {
+        "type": "narutoshinobicraft:easing_thrust",
+        "acceleration": 0.06,
+        "max_speed": 1.5,
+        "curve": "ease_in_out_cubic"
+      },
+      {
+        "type": "narutoshinobicraft:homing",
+        "turn_rate": 0.15,
+        "range": 16.0,
+        "cone_degrees": 40.0
+      },
       { "type": "narutoshinobicraft:drag", "factor": 0.99 },
       { "type": "narutoshinobicraft:gravity", "strength": 0.0 }
     ]
