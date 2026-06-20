@@ -5,12 +5,12 @@ import java.util.List;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import narutoshinobicraft.common.jutsu.effect.EffectRegistry;
-import narutoshinobicraft.common.jutsu.effect.JutsuEffect;
-import narutoshinobicraft.common.jutsu.projectile.behavior.ProjectileBehavior;
-import narutoshinobicraft.common.jutsu.projectile.motion.EntityMotion;
-import narutoshinobicraft.common.jutsu.projectile.registry.EntityMotionRegistry;
-import narutoshinobicraft.common.jutsu.projectile.registry.ProjectileBehaviorRegistry;
+import narutoshinobicraft.common.jutsu.effect.registry.EffectRegistry;
+import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
+import narutoshinobicraft.common.jutsu.projectile.behavior.api.ProjectileBehavior;
+import narutoshinobicraft.common.jutsu.projectile.motion.api.EntityMotion;
+import narutoshinobicraft.common.jutsu.projectile.motion.registry.EntityMotionRegistry;
+import narutoshinobicraft.common.jutsu.projectile.behavior.registry.ProjectileBehaviorRegistry;
 
 /**
  * The Lego blueprint of a projectile: ONE motion + a list of behaviors + a list of on-hit effects +

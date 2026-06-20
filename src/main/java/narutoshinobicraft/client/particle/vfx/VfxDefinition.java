@@ -1,9 +1,9 @@
 package narutoshinobicraft.client.particle.vfx;
 
 import narutoshinobicraft.client.particle.data.JutsuParticleOptions;
-import narutoshinobicraft.client.particle.vfx.emitter.BurstEmitter;
-import narutoshinobicraft.client.particle.vfx.emitter.ChargeAuraEmitter;
-import narutoshinobicraft.client.particle.vfx.emitter.ParticleEmitter;
+import narutoshinobicraft.client.particle.vfx.emitter.impl.BurstEmitter;
+import narutoshinobicraft.client.particle.vfx.emitter.impl.ChargeAuraEmitter;
+import narutoshinobicraft.client.particle.vfx.emitter.api.ParticleEmitter;
 
 @SuppressWarnings("null")
 public record VfxDefinition(

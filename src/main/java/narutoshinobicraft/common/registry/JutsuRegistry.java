@@ -11,7 +11,7 @@ import narutoshinobicraft.NarutoShinobiCraft;
 import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.api.JutsuDefinition;
 import narutoshinobicraft.common.jutsu.api.JutsuRender;
-import narutoshinobicraft.common.jutsu.api.JutsuAction;
+import narutoshinobicraft.common.jutsu.action.api.JutsuAction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 

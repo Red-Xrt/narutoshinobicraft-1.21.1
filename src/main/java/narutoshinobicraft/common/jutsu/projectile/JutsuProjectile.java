@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import narutoshinobicraft.common.jutsu.effect.EffectContext;
-import narutoshinobicraft.common.jutsu.effect.JutsuEffect;
-import narutoshinobicraft.common.jutsu.projectile.behavior.ProjectileBehavior;
+import narutoshinobicraft.common.jutsu.effect.api.EffectContext;
+import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
+import narutoshinobicraft.common.jutsu.projectile.behavior.api.ProjectileBehavior;
 import narutoshinobicraft.common.registry.EntityRegistry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;

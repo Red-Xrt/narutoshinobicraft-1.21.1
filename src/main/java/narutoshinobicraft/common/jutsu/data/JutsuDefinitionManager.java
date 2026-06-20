@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import narutoshinobicraft.NarutoShinobiCraft;
-import narutoshinobicraft.common.jutsu.action.ActionRegistry;
+import narutoshinobicraft.common.jutsu.action.registry.ActionRegistry;
 import narutoshinobicraft.common.jutsu.api.JutsuDefinition;
 import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.resources.ResourceLocation;
