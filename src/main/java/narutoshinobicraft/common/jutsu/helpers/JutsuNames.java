@@ -1,5 +1,6 @@
 package narutoshinobicraft.common.jutsu.helpers;
 
+import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -11,7 +12,10 @@ public final class JutsuNames {
         if (id == null) {
             return Component.empty();
         }
-        String key = id.getPath().contains(".") ? id.getPath() : "entity." + id.getPath() + ".name";
-        return Component.translatable(key);
+        var entry = JutsuRegistry.getJutsu(id);
+        if (entry != null && entry.definition().nameKey().isPresent()) {
+            return Component.translatable(entry.definition().nameKey().get());
+        }
+        return Component.translatable("jutsu." + id.getNamespace() + "." + id.getPath());
     }
 }

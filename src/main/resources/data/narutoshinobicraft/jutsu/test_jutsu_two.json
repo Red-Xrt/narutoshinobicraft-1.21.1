@@ -1,0 +1,17 @@
+{
+  "rank": "C",
+  "required_xp": 0,
+  "chakra_cost": 80.0,
+  "type": "raiton",
+  "base_power": 1.0,
+  "powerup_delay": 40.0,
+  "max_power_cap": 8.0,
+  "default_cooldown_ticks": 40,
+  "max_charge_ticks": 0,
+  "name_key": "jutsu.narutoshinobicraft.test_jutsu_two",
+  "vfx": "narutoshinobicraft:chakra_charge",
+  "action": {
+    "type": "narutoshinobicraft:spawn_projectile",
+    "projectile_id": "narutoshinobicraft:homing_spiral_fireball"
+  }
+}

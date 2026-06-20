@@ -20,3 +20,4 @@ public class PlayerVariants {
         return this.kamui_intangible;
     }
 }
+

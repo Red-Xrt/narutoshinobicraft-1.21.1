@@ -1,6 +1,5 @@
 package narutoshinobicraft.common.jutsu.api;
 
-//TODO: temporary solution
 public enum JutsuCategory {
 	NINJUTSU,
 	DOTON,

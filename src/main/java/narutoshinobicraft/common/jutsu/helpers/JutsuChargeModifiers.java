@@ -13,9 +13,7 @@ public class JutsuChargeModifiers {
 
     public static float jutsuXpModifier(int currentXp, int requiredXp, boolean creativeLike) {
         int requirement = Math.max(0, requiredXp);
-        // No mastery requirement => the jutsu is "free": it should charge at normal speed (1.0),
-        // not stall at 0. This must be checked before the progress gate, otherwise requiredXp == 0
-        // collapses progress to 0 and kills the power entirely.
+
         if (requirement <= 0) {
             return 1.0f;
         }
@@ -35,12 +33,8 @@ public class JutsuChargeModifiers {
         return jutsuXpModifier(currentXp, requiredXp, creativeLike);
     }
 
-    /**
-     * Charge-speed multiplier. Keyed on ninja progression (same source as {@code JutsuCooldownHelper}
-     * and the original mod), NOT chakra capacity: the stronger the ninja and the more mastered the
-     * jutsu, the faster it charges.
-     */
     public static float chargeModifier(double ninjaLevel, JutsuStackState state, ResourceLocation jutsuId, int requiredXp, boolean creativeLike) {
         return cooldownModifier(ninjaLevel) * jutsuXpModifier(state, jutsuId, requiredXp, creativeLike);
     }
 }
+

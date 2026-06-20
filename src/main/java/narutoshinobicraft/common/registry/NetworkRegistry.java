@@ -6,6 +6,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import narutoshinobicraft.NarutoShinobiCraft;
 import narutoshinobicraft.common.network.payloads.JutsuCastSuccessPayload;
+import narutoshinobicraft.common.network.payloads.SwitchJutsuPayload;
 import narutoshinobicraft.common.network.payloads.SyncBattleExpPayload;
 import narutoshinobicraft.common.network.payloads.SyncChakraPayload;
 import narutoshinobicraft.common.network.payloads.SyncPlayerVariantPayload;
@@ -13,6 +14,7 @@ import narutoshinobicraft.client.network.handler.HandlerJutsuCastSuccess;
 import narutoshinobicraft.client.network.handler.HandlerSyncBattleExp;
 import narutoshinobicraft.client.network.handler.HandlerSyncChakra;
 import narutoshinobicraft.client.network.handler.HandlerSyncNinjaVariant;
+import narutoshinobicraft.server.network.handler.HandlerSwitchJutsu;
 
 @SuppressWarnings("null")
 @EventBusSubscriber(modid = NarutoShinobiCraft.MODID)
@@ -43,5 +45,10 @@ public class NetworkRegistry {
             JutsuCastSuccessPayload.TYPE,
             JutsuCastSuccessPayload.STREAM_CODEC,
             HandlerJutsuCastSuccess::handler);
+
+        registrar.playToServer(
+            SwitchJutsuPayload.TYPE,
+            SwitchJutsuPayload.STREAM_CODEC,
+            HandlerSwitchJutsu::handler);
     }
 }

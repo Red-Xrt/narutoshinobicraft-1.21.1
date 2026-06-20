@@ -1,8 +1,8 @@
 {
   "item.narutoshinobicraft.test_vfx": "VFX Test Scroll",
   "itemGroup.narutoshinobicraft.main": "Naruto ShinobiCraft",
-  "entity.test_jutsu_one.name": "Test Jutsu One (Katon)",
-  "entity.test_jutsu_two.name": "Test Jutsu Two (Raiton)",
+  "jutsu.narutoshinobicraft.test_jutsu_one": "Test Jutsu One (Katon)",
+  "jutsu.narutoshinobicraft.test_jutsu_two": "Test Jutsu Two (Raiton)",
   "gamerule.keepBattleExp": "Keep Battle Exp",
   "gamerule.keepBattleExp.description": "Keep battle exp when you die.",
   "chattext.ninjaexperience": "Earned Ninja XP: %s",

@@ -5,7 +5,6 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.Locale;
 import java.util.Optional;
-import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
 import net.minecraft.resources.ResourceLocation;
 
 @SuppressWarnings("null")
@@ -19,7 +18,8 @@ public record JutsuDefinition(
     float maxPowerCap,
     long defaultCooldownTicks,
     int maxChargeTicks,
-    Optional<ResourceLocation> vfxId
+    Optional<ResourceLocation> vfxId,
+    Optional<String> nameKey
 ) {
     public static final Codec<JutsuCategory> CATEGORY_CODEC = Codec.STRING.comapFlatMap(
         raw -> {
@@ -48,7 +48,8 @@ public record JutsuDefinition(
         Codec.FLOAT.optionalFieldOf("max_power_cap", 0.0f).forGetter(def -> def.maxPowerCap),
         Codec.LONG.optionalFieldOf("default_cooldown_ticks", 0L).forGetter(def -> def.defaultCooldownTicks),
         Codec.INT.optionalFieldOf("max_charge_ticks", 0).forGetter(def -> def.maxChargeTicks),
-        ResourceLocation.CODEC.optionalFieldOf("vfx").forGetter(def -> def.vfxId)
+        ResourceLocation.CODEC.optionalFieldOf("vfx").forGetter(def -> def.vfxId),
+        Codec.STRING.optionalFieldOf("name_key").forGetter(def -> def.nameKey)
     ).apply(instance, JutsuDefinition::new));
 
     public static int requiredXpForRank(char rank) {
@@ -120,11 +121,18 @@ public record JutsuDefinition(
             maxPowerCap,
             Math.max(0L, defaultCooldownTicks),
             Math.max(0, maxChargeTicks),
-            Optional.ofNullable(vfxId)
+            Optional.ofNullable(vfxId),
+            Optional.empty()
         );
     }
 
     public int resolvedMaxChargeTicks() {
-        return maxChargeTicks > 0 ? maxChargeTicks : JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION;
+        if (maxChargeTicks > 0) {
+            return maxChargeTicks;
+        }
+        if (maxPowerCap > basePower && powerupDelay > 0.0f) {
+            return Math.max(20, (int) Math.ceil((maxPowerCap - basePower) * powerupDelay));
+        }
+        return 100;
     }
 }

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import narutoshinobicraft.common.resources.ResourceLocateDameSource;
 
 @SuppressWarnings("null")
-public class JutsuDamageTypes {    
+public class JutsuDamageTypes {
     public static final ResourceKey<DamageType> NINJUTSU = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocateDameSource.Ninjutsu);
     public static final ResourceKey<DamageType> SENJUTSU = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocateDameSource.Senjutsu);
 
@@ -34,3 +34,4 @@ public class JutsuDamageTypes {
         return isDamageSourceNinjutsu(source) || isDamageSourceSenjutsu(source);
     }
 }
+

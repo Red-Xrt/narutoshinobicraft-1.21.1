@@ -8,3 +8,4 @@ public interface ParticleBehavior {
     void tick(GenericJutsuParticle particle);
     MapCodec<? extends ParticleBehavior> codec();
 }
+

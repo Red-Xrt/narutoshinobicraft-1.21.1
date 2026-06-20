@@ -13,8 +13,20 @@
     "bounce_on_ground": true
   },
   "behaviors": [
-    {
-      "type": "narutoshinobicraft:smoke_visuals"
-    }
-  ]
+    { "type": "narutoshinobicraft:smoke_visuals" }
+  ],
+  "cast_emitter": {
+    "type": "narutoshinobicraft:burst",
+    "count": 24,
+    "spread": 0.25,
+    "velocity_scale": 0.3,
+    "position_spread": 0.4,
+    "origin_height_factor": 0.6
+  },
+  "charge_emitter": {
+    "type": "narutoshinobicraft:charge_aura",
+    "count": 30,
+    "radius": 0.2,
+    "rise": 0.5
+  }
 }

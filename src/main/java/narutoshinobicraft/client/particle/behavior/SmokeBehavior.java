@@ -20,9 +20,10 @@ public class SmokeBehavior implements ParticleBehavior {
         float targetAlpha = particle.getInitialAlpha() * (1.0F - f * f * 0.5F);
         particle.setAlpha(targetAlpha);
     }
-    
+
     @Override
     public MapCodec<? extends ParticleBehavior> codec() {
         return CODEC;
     }
 }
+

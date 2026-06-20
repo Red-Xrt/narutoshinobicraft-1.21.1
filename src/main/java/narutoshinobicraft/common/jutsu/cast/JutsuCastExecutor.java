@@ -1,5 +1,7 @@
 package narutoshinobicraft.common.jutsu.cast;
 
+import java.util.Optional;
+
 import narutoshinobicraft.common.data.attachments.PlayersChakra;
 import narutoshinobicraft.common.data.component.JutsuContext;
 import narutoshinobicraft.common.data.component.JutsuStackOps;
@@ -22,32 +24,27 @@ public final class JutsuCastExecutor {
     private JutsuCastExecutor() {}
 
     public static float getPower(ItemStack stack, LivingEntity entity, int timeLeft) {
-        ResourceLocation jutsuId = JutsuStackOps.getCurrentJutsuId(stack);
-        JutsuRegistry.JutsuEntry entry = JutsuRegistry.getJutsu(jutsuId);
-        if (jutsuId == null || entry == null) {
-            return 0.0f;
-        }
-        JutsuDefinition definition = entry.definition();
-        return JutsuPowerCalculator.calculatePower(
-            timeLeft,
-            definition.resolvedMaxChargeTicks(),
-            definition.basePower(),
-            definition.powerupDelay(),
-            getModifier(stack, entity, jutsuId),
-            getMaxPower(entity, definition)
-        );
+        return JutsuRegistry.findCurrentEntry(stack)
+            .map(entry -> JutsuPowerCalculator.calculatePower(
+                timeLeft,
+                entry.definition().resolvedMaxChargeTicks(),
+                entry.definition().basePower(),
+                entry.definition().powerupDelay(),
+                getModifier(stack, entity, JutsuStackOps.getCurrentJutsuId(stack)),
+                getMaxPower(entity, entry.definition())
+            ))
+            .orElse(0.0f);
     }
 
     public static float resolvePower(ItemStack stack, LivingEntity entity, int timeLeft) {
-        ResourceLocation jutsuId = JutsuStackOps.getCurrentJutsuId(stack);
-        JutsuRegistry.JutsuEntry entry = JutsuRegistry.getJutsu(jutsuId);
-        if (entry != null) {
-            float storedPower = entry.action().getPower(stack);
-            if (storedPower > 0.0f) {
-                return storedPower;
-            }
-        }
-        return getPower(stack, entity, timeLeft);
+        return JutsuRegistry.findCurrentEntry(stack)
+            .flatMap(entry -> {
+                float storedPower = entry.action().getPower(stack);
+                return storedPower > 0.0f
+                    ? Optional.of(storedPower)
+                    : Optional.empty();
+            })
+            .orElseGet(() -> getPower(stack, entity, timeLeft));
     }
 
     public static CastOutcome execute(ItemStack stack, LivingEntity entity, float power) {
@@ -62,7 +59,7 @@ public final class JutsuCastExecutor {
         if (jutsuId == null || !JutsuStackOps.getJutsuIds(stack).contains(jutsuId)) {
             return CastOutcome.INVALID_STATE;
         }
-        JutsuRegistry.JutsuEntry entry = JutsuRegistry.getJutsu(jutsuId);
+        var entry = JutsuRegistry.findEntry(jutsuId).orElse(null);
         if (entry == null) {
             return CastOutcome.INVALID_STATE;
         }
@@ -100,11 +97,16 @@ public final class JutsuCastExecutor {
             chakra.consumeChakra(chakraCost);
         }
 
-        PacketDistributor.sendToPlayersTrackingEntityAndSelf((ServerPlayer) player, new JutsuCastSuccessPayload(jutsuId, player.getId()));
-
         long cooldownAfter = JutsuStackOps.getCooldownEnd(stack, jutsuId);
         if (cooldownAfter <= gameTime && cooldownAfter == cooldownBefore) {
             JutsuScrollSupport.applyDefinitionCooldown(stack, player, definition);
+        }
+
+        if (player instanceof ServerPlayer serverPlayer) {
+            PacketDistributor.sendToPlayersTrackingEntityAndSelf(
+                serverPlayer,
+                new JutsuCastSuccessPayload(jutsuId, player.getId())
+            );
         }
         return CastOutcome.SUCCESS;
     }

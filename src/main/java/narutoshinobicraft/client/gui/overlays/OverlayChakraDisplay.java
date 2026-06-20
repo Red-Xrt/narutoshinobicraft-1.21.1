@@ -12,24 +12,22 @@ public class OverlayChakraDisplay {
         int screenWidth = guiGraphics.guiWidth();
         int screenHeight = guiGraphics.guiHeight();
         int warningTime = 60;
-        //boolean showSageMode = false;
 
         Minecraft minecraft = Minecraft.getInstance();
         Player entity = minecraft.player;
         var chakra = entity.getData(AttachmentRegistry.PLAYER_CHAKRA);
         var process = entity.getData(AttachmentRegistry.PLAYER_PROCESS);
-        
-        //TODO: SAGEMODE TOO
+
         if (process.isNinja() && chakra.getCurrentChakra() > 0) {
             int baseColor = (warningTime % 20 < 10) ? 0xFF00FFFF : 0xFFFF0000;
-            int startX = screenWidth / 2 - 200; 
+            int startX = screenWidth / 2 - 200;
             int barWidth = 80;
-            int bottomY = screenHeight - 9; 
-            double totalLayers = chakra.getCurrentChakra() / chakra.getCharkaMax(); 
-            double topLayerPercentage = totalLayers - Math.floor(totalLayers); 
-            
+            int bottomY = screenHeight - 9;
+            double totalLayers = chakra.getCurrentChakra() / chakra.getCharkaMax();
+            double topLayerPercentage = totalLayers - Math.floor(totalLayers);
+
             if (totalLayers > 0 && topLayerPercentage == 0) {
-                topLayerPercentage = 1.0; 
+                topLayerPercentage = 1.0;
             }
 
             int totalFullLayers = (int) Math.ceil(totalLayers);
@@ -48,7 +46,7 @@ public class OverlayChakraDisplay {
             }
 
             String text = String.format("%d/%d", (int) chakra.getCurrentChakra(), (int) chakra.getCharkaMax());
-            guiGraphics.drawString(minecraft.font, text, startX + 17, topY - 10, baseColor, true); //TODO: Fix this it not center if amount so big
+            guiGraphics.drawString(minecraft.font, text, startX + 17, topY - 10, baseColor, true);
         }
         if(warningTime > 0){
             --warningTime;

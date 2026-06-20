@@ -14,11 +14,11 @@ public class DeathTracker {
 
     public void addDeath(Player player) {
         long expireTime = player.level().getGameTime() + (5 * 60 * 20);
-        
+
         recentDeaths.add(new DeathRecord(
-            player.getUUID(), 
-            player.blockPosition(), 
-            expireTime, 
+            player.getUUID(),
+            player.blockPosition(),
+            expireTime,
             player.getTeam() != null ? player.getTeam().getName() : "",
             player.getData(AttachmentRegistry.PLAYER_PROCESS).getBattleExp()
         ));
@@ -52,7 +52,7 @@ public class DeathTracker {
         }
         return null;
     }
-    
+
     public boolean isPlayerCurrentlyDead(Player player){
         if(!recentDeaths.isEmpty()){
             for(int i = recentDeaths.size(); --i >= 0;){
@@ -75,7 +75,7 @@ public class DeathTracker {
 		}
 		return 0L;
 	}
-    
+
     public static double getXpBeforeDeath(Player player){
         if(!recentDeaths.isEmpty()){
             for(int i = recentDeaths.size(); --i >= 0;){
@@ -88,3 +88,4 @@ public class DeathTracker {
         return 0.0d;
     }
 }
+

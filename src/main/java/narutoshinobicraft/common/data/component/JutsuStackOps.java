@@ -106,26 +106,25 @@ public final class JutsuStackOps {
     }
 
     public static boolean switchNextUsableJutsu(ItemStack stack, BiPredicate<ItemStack, ResourceLocation> canUse) {
+        return switchUsableJutsu(stack, 1, canUse);
+    }
+
+    public static boolean switchUsableJutsu(ItemStack stack, int direction,
+                                            BiPredicate<ItemStack, ResourceLocation> canUse) {
         List<ResourceLocation> ids = getJutsuIds(stack);
         if (ids.isEmpty()) {
             return false;
         }
-        int attempts = 0;
+        int step = direction < 0 ? -1 : 1;
         int next = getCurrentIndex(stack);
-        for (; attempts < ids.size(); attempts++) {
-            next++;
-            if (next >= ids.size()) {
-                next = 0;
-            }
+        for (int attempts = 0; attempts < ids.size(); attempts++) {
+            next = Math.floorMod(next + step, ids.size());
             if (canUse.test(stack, ids.get(next))) {
-                break;
+                setCurrentIndex(stack, next);
+                return true;
             }
         }
-        if (attempts >= ids.size()) {
-            return false;
-        }
-        setCurrentIndex(stack, next);
-        return true;
+        return false;
     }
 
     public static long getCooldownEnd(ItemStack stack, ResourceLocation jutsuId) {

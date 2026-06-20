@@ -21,3 +21,4 @@ public record SyncBattleExpPayload (PlayerProcess playerProcess) implements Cust
         return TYPE;
     }
 }
+

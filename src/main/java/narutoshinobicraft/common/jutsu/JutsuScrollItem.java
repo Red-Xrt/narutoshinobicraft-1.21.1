@@ -65,7 +65,7 @@ public class JutsuScrollItem extends Item {
             }
             player.displayClientMessage(Component.literal(String.format("%.1f", power)), true);
         }
-        JutsuChargeEffects.tick(level, entity, timeLeft);
+        JutsuChargeEffects.tick(level, entity, stack, timeLeft);
     }
 
     @Override
@@ -84,12 +84,9 @@ public class JutsuScrollItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        var currentId = JutsuStackOps.getCurrentJutsuId(stack);
-        JutsuRegistry.JutsuEntry entry = JutsuRegistry.getJutsu(currentId);
-        if (entry != null) {
-            return entry.definition().resolvedMaxChargeTicks();
-        }
-        return JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION;
+        return JutsuRegistry.findCurrentEntry(stack)
+            .map(entry -> entry.definition().resolvedMaxChargeTicks())
+            .orElse(JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION);
     }
 
     @Override

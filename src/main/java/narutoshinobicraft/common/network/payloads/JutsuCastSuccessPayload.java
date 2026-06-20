@@ -15,7 +15,8 @@ public record JutsuCastSuccessPayload(ResourceLocation jutsuId, int casterId) im
         ByteBufCodecs.VAR_INT, JutsuCastSuccessPayload::casterId,
         JutsuCastSuccessPayload::new
     );
-    
+
     @Override
     public Type<? extends CustomPacketPayload> type() { return TYPE; }
 }
+

@@ -28,3 +28,4 @@ public class ModKeybinds {
         "key.categories.narutoshinobicraft"
     ));
 }
+

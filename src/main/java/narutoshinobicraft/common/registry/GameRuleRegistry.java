@@ -10,3 +10,4 @@ public class GameRuleRegistry {
         KEEP_BATTLE_EXP_RULE = GameRules.register("keepBattleExp", GameRules.Category.PLAYER, GameRules.BooleanValue.create(true));
     }
 }
+

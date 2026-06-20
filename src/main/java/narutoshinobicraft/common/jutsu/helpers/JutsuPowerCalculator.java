@@ -59,3 +59,4 @@ public class JutsuPowerCalculator {
         return resolveMaxPower(chakra.getCurrentChakra(), definition.chakraCost(), definition.maxPowerCap());
     }
 }
+

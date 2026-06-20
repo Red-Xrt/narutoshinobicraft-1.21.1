@@ -18,7 +18,7 @@ public class PlayerProcess {
 
     public double getBattleExp(){return this._battleExp;}
     public void setBattleExp(double battleExp){this._battleExp = battleExp;}
-    
+
     public boolean isNinja(){
         return getBattleExp() > 0.0d;
     }
@@ -33,3 +33,4 @@ public class PlayerProcess {
         return getBattleExp() != expTemp;
     }
 }
+

@@ -8,3 +8,4 @@ public record DeathRecord(UUID playerId, BlockPos pos, long expireTime, String t
         return currentTime > expireTime;
     }
 }
+

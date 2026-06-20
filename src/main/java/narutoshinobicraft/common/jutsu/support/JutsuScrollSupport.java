@@ -88,8 +88,13 @@ public final class JutsuScrollSupport {
     }
 
     public static boolean switchNextJutsu(ItemStack stack, LivingEntity entity) {
-        boolean switched = JutsuStackOps.switchNextUsableJutsu(
+        return switchJutsu(stack, entity, 1);
+    }
+
+    public static boolean switchJutsu(ItemStack stack, LivingEntity entity, int direction) {
+        boolean switched = JutsuStackOps.switchUsableJutsu(
             stack,
+            direction,
             (scroll, jutsuId) -> JutsuCastValidator.canUseJutsu(scroll, jutsuId, entity)
         );
 

@@ -14,7 +14,7 @@ public class HandlerJutsuCastSuccess {
     public static void handler(JutsuCastSuccessPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             Player localPlayer = context.player();
-            JutsuRegistry.JutsuEntry entry = JutsuRegistry.getJutsu(payload.jutsuId());
+            var entry = JutsuRegistry.findEntry(payload.jutsuId()).orElse(null);
             if (entry == null) {
                 return;
             }
@@ -24,11 +24,9 @@ public class HandlerJutsuCastSuccess {
                 return;
             }
 
-            // Principle 3: resolve the data-driven VFX String ID locally on the client.
             entry.definition().vfxId()
                 .ifPresent(vfxId -> JutsuVfxSpawner.spawnCastVfx(livingCaster, vfxId));
 
-            // Programmatic render hook for advanced, entity-driven effects (Tier 1 escape hatch).
             if (livingCaster instanceof Player playerCaster) {
                 ItemStack scrollItem = JutsuScrollSupport.findHeldScroll(playerCaster);
                 if (!scrollItem.isEmpty()) {

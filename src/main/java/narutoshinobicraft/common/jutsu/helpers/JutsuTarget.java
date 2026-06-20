@@ -18,3 +18,4 @@ public class JutsuTarget {
         return true;
     }
 }
+

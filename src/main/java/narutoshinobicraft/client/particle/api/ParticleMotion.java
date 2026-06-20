@@ -9,3 +9,4 @@ public interface ParticleMotion {
 
     MapCodec<? extends ParticleMotion> codec();
 }
+

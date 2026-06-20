@@ -1,0 +1,17 @@
+{
+  "motion": {
+    "type": "narutoshinobicraft:physics",
+    "initial_speed": 1.2,
+    "forces": [
+      { "type": "narutoshinobicraft:thrust", "acceleration": 0.05, "max_speed": 2.0 },
+      { "type": "narutoshinobicraft:drag", "factor": 0.99 }
+    ]
+  },
+  "on_hit": [
+    { "type": "narutoshinobicraft:damage", "amount": 6.0, "scale_with_power": false },
+    { "type": "narutoshinobicraft:knockback", "strength": 0.5 }
+  ],
+  "width": 0.5,
+  "height": 0.5,
+  "lifetime": 100
+}

@@ -25,7 +25,7 @@ public class PlayersChakra {
 
     public double getCurrentChakra(){return this._chakraCurrent;}
     public void setCurrentChakra(double charkaSetMin){this._chakraCurrent = charkaSetMin;}
-    
+
     public double getCharkaMax(){return this._chakraMax;}
     public void setCharkaMax(double charkaSetMax){this._chakraMax = charkaSetMax;}
 
@@ -61,7 +61,7 @@ public class PlayersChakra {
         }
 
         this.setCurrentChakra(newChakra);
-        
+
         return oldChakra != newChakra;
     }
 
@@ -73,7 +73,7 @@ public class PlayersChakra {
         if (percent > 1.0f) {
             percent = percent / 100.0f;
         }
-        
+
         double amountToConsume = this.getCharkaMax() * (double) percent;
         this.consumeChakra(amountToConsume, ignoreMax);
     }
@@ -90,3 +90,4 @@ public class PlayersChakra {
         return this.getCurrentChakra() >= this.getCharkaMax();
     }
 }
+
