@@ -9,7 +9,7 @@
   "default_cooldown_ticks": 40,
   "max_charge_ticks": 0,
   "name_key": "jutsu.narutoshinobicraft.test_jutsu_two",
-  "vfx": "narutoshinobicraft:chakra_charge",
+  "on_cast": ["narutoshinobicraft:raiton_burst"],
   "action": {
     "type": "narutoshinobicraft:spawn_projectile",
     "projectile_id": "narutoshinobicraft:homing_spiral_fireball"

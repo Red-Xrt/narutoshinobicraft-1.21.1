@@ -1,11 +1,12 @@
 package narutoshinobicraft.client.events;
 
 import narutoshinobicraft.NarutoShinobiCraft;
-import narutoshinobicraft.client.particle.GenericJutsuParticle;
-import narutoshinobicraft.client.particle.data.JutsuParticleOptions;
-import narutoshinobicraft.client.particle.registry.ParticleRegistry;
-import narutoshinobicraft.client.particle.vfx.JutsuVfxSpawner;
-import narutoshinobicraft.client.particle.vfx.VfxManager;
+import narutoshinobicraft.client.fx.anchor.FxAnchor;
+import narutoshinobicraft.client.fx.preset.FxPlayer;
+import narutoshinobicraft.client.fx.preset.PresetLibrary;
+import narutoshinobicraft.client.fx.speck.FxSpeck;
+import narutoshinobicraft.client.fx.speck.SpeckOptions;
+import narutoshinobicraft.client.fx.speck.register.SpeckTypeRegistry;
 import narutoshinobicraft.common.jutsu.data.JutsuDefinitionManager;
 import narutoshinobicraft.common.jutsu.data.ScrollPresetManagerLoader;
 import narutoshinobicraft.common.jutsu.helpers.JutsuClientEffects;
@@ -23,19 +24,24 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 public class ClientModEvents {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
-        JutsuClientEffects.registerChargeVfxSpawner(JutsuVfxSpawner::spawnChargeVfx);
-        event.<JutsuParticleOptions>registerSpriteSet(
-            ParticleRegistry.GENERIC_JUTSU_PARTICLE.get(),
-            sprites -> new GenericJutsuParticle.Provider(sprites)
+        JutsuClientEffects.registerScrollAura((entity, presetId) ->
+            FxPlayer.play(presetId, FxAnchor.on(entity))
         );
-        event.registerSpriteSet(ParticleRegistry.SMOKE.get(), sprites -> new GenericJutsuParticle.Provider(sprites));
+        JutsuClientEffects.registerProjectileTrail((entity, motion, presetId) ->
+            FxPlayer.play(presetId, FxAnchor.inFlight(entity, motion))
+        );
+        event.<SpeckOptions>registerSpriteSet(
+            SpeckTypeRegistry.GENERIC.get(),
+            sprites -> new FxSpeck.Provider(sprites)
+        );
+        event.registerSpriteSet(SpeckTypeRegistry.SMOKE.get(), sprites -> new FxSpeck.Provider(sprites));
     }
 
     @SubscribeEvent
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new JutsuDefinitionManager());
         event.registerReloadListener(new ScrollPresetManagerLoader());
-        event.registerReloadListener(new VfxManager());
+        event.registerReloadListener(new PresetLibrary());
     }
 
     @SubscribeEvent

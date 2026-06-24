@@ -8,11 +8,12 @@ import net.minecraft.world.level.Level;
 
 @SuppressWarnings("null")
 public final class JutsuChargeEffects {
+
     private JutsuChargeEffects() {}
 
     public static void tick(Level level, LivingEntity entity, ItemStack stack, int timeLeft) {
         if (level.isClientSide()) {
-            JutsuVfxResolver.fromStack(stack).ifPresent(vfxId -> JutsuClientEffects.spawnChargeVfx(entity, vfxId));
+            JutsuClientEffects.playScrollAura(entity, ChakraVisualResolver.scrollAuraFor(entity));
         } else if (timeLeft % 10 == 0) {
             level.playSound(
                 null,

@@ -15,7 +15,7 @@ import narutoshinobicraft.common.registry.EntityRegistry;
 import narutoshinobicraft.common.registry.GameRuleRegistry;
 import narutoshinobicraft.common.registry.ItemRegistry;
 import narutoshinobicraft.common.registry.SoundRegistry;
-import narutoshinobicraft.client.particle.registry.ParticleRegistry;
+import narutoshinobicraft.client.fx.speck.register.SpeckTypeRegistry;
 
 @SuppressWarnings("null")
 @Mod(NarutoShinobiCraft.MODID)
@@ -27,7 +27,7 @@ public class NarutoShinobiCraft {
         AttachmentRegistry.ATTACHMENT_TYPES.register(modEventBus);
         DataComponentRegistry.DATA_COMPONENT_TYPES.register(modEventBus);
         SoundRegistry.SOUND_EVENTS.register(modEventBus);
-        ParticleRegistry.PARTICLE_REGISTER.register(modEventBus);
+        SpeckTypeRegistry.PARTICLE_REGISTER.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         CreativeTabRegistry.CREATIVE_TABS.register(modEventBus);
         EntityRegistry.ENTITY_TYPES.register(modEventBus);

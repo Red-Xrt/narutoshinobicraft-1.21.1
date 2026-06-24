@@ -3,9 +3,11 @@ package narutoshinobicraft.common.jutsu.api;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import net.minecraft.resources.ResourceLocation;
 
 @SuppressWarnings("null")
 public record JutsuDefinition(
@@ -18,9 +20,14 @@ public record JutsuDefinition(
     float maxPowerCap,
     long defaultCooldownTicks,
     int maxChargeTicks,
-    Optional<ResourceLocation> vfxId,
+    List<ResourceLocation> onCast,
     Optional<String> nameKey
 ) {
+
+    public JutsuDefinition {
+        onCast = onCast == null ? List.of() : List.copyOf(onCast);
+    }
+
     public static final Codec<JutsuCategory> CATEGORY_CODEC = Codec.STRING.comapFlatMap(
         raw -> {
             if (raw == null || raw.isBlank()) {
@@ -48,7 +55,7 @@ public record JutsuDefinition(
         Codec.FLOAT.optionalFieldOf("max_power_cap", 0.0f).forGetter(def -> def.maxPowerCap),
         Codec.LONG.optionalFieldOf("default_cooldown_ticks", 0L).forGetter(def -> def.defaultCooldownTicks),
         Codec.INT.optionalFieldOf("max_charge_ticks", 0).forGetter(def -> def.maxChargeTicks),
-        ResourceLocation.CODEC.optionalFieldOf("vfx").forGetter(def -> def.vfxId),
+        ResourceLocation.CODEC.listOf().optionalFieldOf("on_cast", List.of()).forGetter(def -> def.onCast),
         Codec.STRING.optionalFieldOf("name_key").forGetter(def -> def.nameKey)
     ).apply(instance, JutsuDefinition::new));
 
@@ -97,7 +104,7 @@ public record JutsuDefinition(
         int maxChargeTicks
     ) {
         return ofRank(rank, chakraCost, type, basePower, powerupDelay, maxPowerCap,
-            defaultCooldownTicks, maxChargeTicks, null);
+            defaultCooldownTicks, maxChargeTicks, List.of());
     }
 
     public static JutsuDefinition ofRank(
@@ -109,7 +116,7 @@ public record JutsuDefinition(
         float maxPowerCap,
         long defaultCooldownTicks,
         int maxChargeTicks,
-        ResourceLocation vfxId
+        List<ResourceLocation> onCast
     ) {
         return new JutsuDefinition(
             rank,
@@ -121,7 +128,7 @@ public record JutsuDefinition(
             maxPowerCap,
             Math.max(0L, defaultCooldownTicks),
             Math.max(0, maxChargeTicks),
-            Optional.ofNullable(vfxId),
+            onCast,
             Optional.empty()
         );
     }

@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import narutoshinobicraft.common.jutsu.effect.api.EffectContext;
 import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
+import narutoshinobicraft.common.jutsu.helpers.JutsuClientEffects;
 import narutoshinobicraft.common.jutsu.projectile.behavior.api.ProjectileBehavior;
 import narutoshinobicraft.common.registry.EntityRegistry;
 import net.minecraft.nbt.CompoundTag;
@@ -30,10 +31,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 
 @SuppressWarnings("null")
-public class JutsuProjectile extends Entity implements ItemSupplier {
+public class JutsuProjectile extends Entity implements ItemSupplier, IEntityWithComplexSpawn {
     @Nullable private ProjectileConfig config;
     @Nullable private UUID ownerUuid;
     @Nullable private Entity cachedOwner;
@@ -136,6 +139,11 @@ public class JutsuProjectile extends Entity implements ItemSupplier {
         this.lerpSteps = steps;
     }
 
+    @Nullable
+    public ProjectileConfig getProjectileConfig() {
+        return this.config;
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -144,6 +152,7 @@ public class JutsuProjectile extends Entity implements ItemSupplier {
                 this.lerpPositionAndRotationStep(this.lerpSteps, this.lerpX, this.lerpY, this.lerpZ, this.lerpYRot, this.lerpXRot);
                 this.lerpSteps--;
             }
+            this.tickClientTrail();
             return;
         }
         if (this.config == null) {
@@ -196,6 +205,16 @@ public class JutsuProjectile extends Entity implements ItemSupplier {
         return BlockHitResult.miss(to, Direction.UP, BlockPos.containing(to));
     }
 
+    private void tickClientTrail() {
+        if (this.config == null || this.config.onFly().isEmpty()) {
+            return;
+        }
+        Vec3 motion = this.position().subtract(this.xo, this.yo, this.zo);
+        for (var presetId : this.config.onFly()) {
+            JutsuClientEffects.playProjectileTrail(this, motion, presetId);
+        }
+    }
+
     protected boolean canHitEntity(Entity entity) {
         if (!entity.isAlive() || !entity.isPickable()) {
             return false;
@@ -235,6 +254,34 @@ public class JutsuProjectile extends Entity implements ItemSupplier {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {}
+
+    @Override
+    public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
+        buffer.writeBoolean(this.config != null);
+        if (this.config != null) {
+            CompoundTag tag = new CompoundTag();
+            ProjectileConfig.CODEC.encodeStart(NbtOps.INSTANCE, this.config)
+                .resultOrPartial(error -> {})
+                .ifPresent(encoded -> tag.put("Config", encoded));
+            buffer.writeNbt(tag);
+        }
+    }
+
+    @Override
+    public void readSpawnData(RegistryFriendlyByteBuf buffer) {
+        if (!buffer.readBoolean()) {
+            return;
+        }
+        CompoundTag tag = buffer.readNbt();
+        if (tag != null && tag.contains("Config")) {
+            ProjectileConfig.CODEC.parse(NbtOps.INSTANCE, tag.get("Config"))
+                .resultOrPartial(error -> {})
+                .ifPresent(parsed -> {
+                    this.config = parsed;
+                    this.refreshDimensions();
+                });
+        }
+    }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {

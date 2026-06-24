@@ -23,6 +23,7 @@
     { "type": "narutoshinobicraft:spiral", "radius": 0.3, "speed": 0.5 },
     { "type": "narutoshinobicraft:scale_over_time", "from": 0.3, "to": 1.2, "ticks": 20 }
   ],
+  "on_fly": ["narutoshinobicraft:lightning_trail"],
   "on_hit": [
     { "type": "narutoshinobicraft:damage", "amount": 8.0, "scale_with_power": true }
   ],

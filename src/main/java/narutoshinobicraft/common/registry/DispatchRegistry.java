@@ -30,11 +30,9 @@ import net.minecraft.resources.ResourceLocation;
 public final class DispatchRegistry<T> {
     private final Map<ResourceLocation, MapCodec<? extends T>> byName = new HashMap<>();
     private final Map<MapCodec<? extends T>, ResourceLocation> byCodec = new HashMap<>();
-    private final String label;
     public final Codec<T> dispatchCodec;
 
     public DispatchRegistry(String label, Function<T, MapCodec<? extends T>> codecGetter) {
-        this.label = label;
         this.dispatchCodec = ResourceLocation.CODEC.dispatch(
             "type",
             value -> {

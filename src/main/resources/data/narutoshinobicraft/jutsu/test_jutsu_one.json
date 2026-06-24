@@ -9,7 +9,7 @@
   "default_cooldown_ticks": 20,
   "max_charge_ticks": 0,
   "name_key": "jutsu.narutoshinobicraft.test_jutsu_one",
-  "vfx": "narutoshinobicraft:chakra_charge",
+  "on_cast": ["narutoshinobicraft:katon_burst"],
   "action": {
     "type": "narutoshinobicraft:spawn_projectile",
     "projectile_id": "narutoshinobicraft:straight_fireball"

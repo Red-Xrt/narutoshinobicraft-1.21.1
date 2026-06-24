@@ -1,0 +1,24 @@
+{
+  "type": "narutoshinobicraft:smoke",
+  "color": [180, 220, 255],
+  "alpha": 0.35,
+  "scale": 0.7,
+  "lifetime": 8,
+  "is_animated": true,
+  "motion": {
+    "type": "narutoshinobicraft:linear",
+    "y_accel": 0.0,
+    "drag": 0.98,
+    "ground_drag": 0.9,
+    "bounce_on_ground": false
+  },
+  "looks": [
+    { "type": "narutoshinobicraft:smoke_fade" }
+  ],
+  "spawn": {
+    "type": "narutoshinobicraft:trail",
+    "count": 4,
+    "spread": 0.18,
+    "motion_scale": 0.15
+  }
+}
