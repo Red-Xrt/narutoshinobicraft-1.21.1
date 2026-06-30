@@ -2,6 +2,7 @@
   "item": "narutoshinobicraft:test_vfx",
   "jutsu_ids": [
     "narutoshinobicraft:test_jutsu_one",
-    "narutoshinobicraft:test_jutsu_two"
+    "narutoshinobicraft:test_jutsu_two",
+    "narutoshinobicraft:test_jutsu_hitscan"
   ]
 }

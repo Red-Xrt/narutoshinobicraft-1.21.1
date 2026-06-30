@@ -3,6 +3,7 @@
   "itemGroup.narutoshinobicraft.main": "Naruto ShinobiCraft",
   "jutsu.narutoshinobicraft.test_jutsu_one": "Test Jutsu One (Katon)",
   "jutsu.narutoshinobicraft.test_jutsu_two": "Test Jutsu Two (Raiton)",
+  "jutsu.narutoshinobicraft.test_jutsu_hitscan": "Test Jutsu Hitscan (Raiton)",
   "gamerule.keepBattleExp": "Keep Battle Exp",
   "gamerule.keepBattleExp.description": "Keep battle exp when you die.",
   "chattext.ninjaexperience": "Earned Ninja XP: %s",

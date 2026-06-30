@@ -9,7 +9,7 @@ public interface JutsuAction {
         return context != null
             && context.level() != null
             && !context.level().isClientSide()
-            && context.player() != null;
+            && context.caster() != null;
     }
 
     boolean execute(JutsuContext context);

@@ -4,37 +4,39 @@ import java.util.List;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import narutoshinobicraft.common.data.component.JutsuContext;
 import narutoshinobicraft.common.jutsu.action.api.JutsuAction;
 import narutoshinobicraft.common.jutsu.effect.api.EffectContext;
-import narutoshinobicraft.common.jutsu.effect.registry.EffectRegistry;
 import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
+import narutoshinobicraft.common.jutsu.effect.registry.EffectRegistry;
+import narutoshinobicraft.common.spatial.aim.AimResolver;
+import narutoshinobicraft.common.spatial.aim.AimSpec;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 @SuppressWarnings("null")
 public final class ApplyEffectsAction implements JutsuAction {
     public static final MapCodec<ApplyEffectsAction> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
         EffectRegistry.DISPATCH_CODEC.listOf().fieldOf("effects").forGetter(ApplyEffectsAction::effects),
-        com.mojang.serialization.Codec.DOUBLE.optionalFieldOf("range", 3.0d).forGetter(ApplyEffectsAction::range)
+        AimSpec.CODEC.fieldOf("aim").forGetter(ApplyEffectsAction::aimSpec)
     ).apply(inst, ApplyEffectsAction::new));
 
     private final List<JutsuEffect> effects;
-    private final double range;
+    private final AimSpec aimSpec;
 
-    public ApplyEffectsAction(List<JutsuEffect> effects, double range) {
+    public ApplyEffectsAction(List<JutsuEffect> effects, AimSpec aimSpec) {
         this.effects = List.copyOf(effects);
-        this.range = range;
+        this.aimSpec = aimSpec;
     }
 
     public List<JutsuEffect> effects() {
         return this.effects;
     }
 
-    public double range() {
-        return this.range;
+    public AimSpec aimSpec() {
+        return this.aimSpec;
     }
 
     @Override
@@ -42,21 +44,29 @@ public final class ApplyEffectsAction implements JutsuAction {
         if (!JutsuAction.requireServerContext(context)) {
             return false;
         }
-        LivingEntity player = context.player();
-        Vec3 eye = player.getEyePosition();
-        Vec3 end = eye.add(player.getLookAngle().scale(this.range));
-        var hit = context.level().clip(new ClipContext(
-            eye, end,
-            ClipContext.Block.OUTLINE,
-            ClipContext.Fluid.NONE,
-            player
-        ));
-        Vec3 position = hit.getType() != net.minecraft.world.phys.HitResult.Type.MISS
-            ? hit.getLocation()
-            : end;
+
+        HitResult hitResult = AimResolver.resolve(context, this.aimSpec);
+        if (hitResult.getType() == HitResult.Type.MISS) {
+            return false;
+        }
+
+        LivingEntity targetEntity = null;
+        Vec3 position = hitResult.getLocation();
+
+        if (hitResult instanceof EntityHitResult entityHit
+            && entityHit.getEntity() instanceof LivingEntity living) {
+            targetEntity = living;
+        }
+
         EffectContext effectContext = new EffectContext(
-            context.level(), player, player, null, position, context.power()
+            context.level(),
+            context.caster(),
+            context.caster(),
+            targetEntity,
+            position,
+            context.power()
         );
+
         for (JutsuEffect effect : this.effects) {
             effect.apply(effectContext);
         }

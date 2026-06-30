@@ -1,0 +1,25 @@
+{
+  "rank": "C",
+  "required_xp": 0,
+  "chakra_cost": 30.0,
+  "type": "raiton",
+  "base_power": 1.0,
+  "powerup_delay": 30.0,
+  "max_power_cap": 3.0,
+  "default_cooldown_ticks": 15,
+  "max_charge_ticks": 0,
+  "name_key": "jutsu.narutoshinobicraft.test_jutsu_hitscan",
+  "on_cast": ["narutoshinobicraft:raiton_burst"],
+  "action": {
+    "type": "narutoshinobicraft:apply_effects",
+    "aim": {
+      "range": 8.0,
+      "hitbox_grow": 0.25,
+      "target": "only_enemy"
+    },
+    "effects": [
+      { "type": "narutoshinobicraft:damage", "amount": 6.0 },
+      { "type": "narutoshinobicraft:knockback", "strength": 0.6 }
+    ]
+  }
+}

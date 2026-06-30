@@ -28,11 +28,19 @@ public final class KnockbackEffect implements JutsuEffect {
         if (!(context.target() instanceof LivingEntity victim)) {
             return;
         }
-        victim.knockback(
-            this.strength,
-            context.position().x - victim.getX(),
-            context.position().z - victim.getZ()
-        );
+        double dx;
+        double dz;
+        if (context.caster() != null) {
+            dx = victim.getX() - context.caster().getX();
+            dz = victim.getZ() - context.caster().getZ();
+        } else if (context.position() != null) {
+            dx = context.position().x - victim.getX();
+            dz = context.position().z - victim.getZ();
+        } else {
+            dx = context.source().getX() - victim.getX();
+            dz = context.source().getZ() - victim.getZ();
+        }
+        victim.knockback(this.strength, dx, dz);
     }
 
     @Override

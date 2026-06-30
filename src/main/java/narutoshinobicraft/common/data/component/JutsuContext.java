@@ -7,7 +7,7 @@ import net.minecraft.world.level.Level;
 
 public record JutsuContext(
     Level level,
-    Player player,
+    Player caster,
     ItemStack stack,
     JutsuStackState stackState,
     float power,

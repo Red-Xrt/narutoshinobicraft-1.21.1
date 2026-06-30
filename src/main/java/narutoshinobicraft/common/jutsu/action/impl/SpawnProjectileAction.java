@@ -39,7 +39,7 @@ public final class SpawnProjectileAction implements JutsuAction {
         if (config == null) {
             return false;
         }
-        JutsuProjectile.spawn(context.level(), context.player(), config, context.power());
+        JutsuProjectile.spawn(context.level(), context.caster(), config, context.power());
         return true;
     }
 
