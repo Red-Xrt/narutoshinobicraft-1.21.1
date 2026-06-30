@@ -9,15 +9,32 @@ public class JutsuPowerCalculator {
     private JutsuPowerCalculator() {}
 
     public static float calculatePower(int timeLeft, float basePower, float powerupDelay, float modifier, float maxPower) {
-        return calculatePower(timeLeft, DEFAULT_MAX_USE_DURATION, basePower, powerupDelay, modifier, maxPower);
+        return calculatePower(
+            timeLeft,
+            DEFAULT_MAX_USE_DURATION,
+            DEFAULT_MAX_USE_DURATION,
+            basePower,
+            powerupDelay,
+            modifier,
+            maxPower
+        );
     }
 
-    public static float calculatePower(int timeLeft, int maxUseDuration, float basePower, float powerupDelay, float modifier, float maxPower) {
+    public static float calculatePower(
+        int timeLeft,
+        int useDuration,
+        int maxChargeTicks,
+        float basePower,
+        float powerupDelay,
+        float modifier,
+        float maxPower
+    ) {
         float f = powerupDelay * modifier;
         if (f <= 0.0f) {
             return 0.0f;
         }
-        int chargeTicks = Math.max(0, maxUseDuration - timeLeft);
+        int elapsed = Math.max(0, useDuration - timeLeft);
+        int chargeTicks = Math.min(elapsed, Math.max(0, maxChargeTicks));
         float rawPower = basePower + (float) chargeTicks / f;
         float cap = Math.max(0.0f, maxPower);
         return Math.min(rawPower, cap);
@@ -29,7 +46,8 @@ public class JutsuPowerCalculator {
         }
         return calculatePower(
             context.timeLeft(),
-            context.maxUseDuration(),
+            context.useDuration(),
+            context.maxChargeTicks(),
             context.basePower(),
             context.powerupDelay(),
             context.modifier(),
@@ -59,4 +77,3 @@ public class JutsuPowerCalculator {
         return resolveMaxPower(chakra.getCurrentChakra(), definition.chakraCost(), definition.maxPowerCap());
     }
 }
-

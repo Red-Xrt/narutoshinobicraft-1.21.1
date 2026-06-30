@@ -27,6 +27,7 @@ public final class JutsuCastExecutor {
         return JutsuRegistry.findCurrentEntry(stack)
             .map(entry -> JutsuPowerCalculator.calculatePower(
                 timeLeft,
+                JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION,
                 entry.definition().resolvedMaxChargeTicks(),
                 entry.definition().basePower(),
                 entry.definition().powerupDelay(),

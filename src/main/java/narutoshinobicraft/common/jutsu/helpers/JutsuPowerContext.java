@@ -2,7 +2,8 @@ package narutoshinobicraft.common.jutsu.helpers;
 
 public record JutsuPowerContext(
     int timeLeft,
-    int maxUseDuration,
+    int useDuration,
+    int maxChargeTicks,
     float basePower,
     float powerupDelay,
     float modifier,
@@ -12,6 +13,7 @@ public record JutsuPowerContext(
         return new JutsuPowerContext(
             timeLeft,
             JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION,
+            JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION,
             basePower,
             powerupDelay,
             modifier,
@@ -20,9 +22,11 @@ public record JutsuPowerContext(
     }
 
     public JutsuPowerContext {
-        if (maxUseDuration <= 0) {
-            maxUseDuration = JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION;
+        if (useDuration <= 0) {
+            useDuration = JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION;
+        }
+        if (maxChargeTicks <= 0) {
+            maxChargeTicks = useDuration;
         }
     }
 }
-

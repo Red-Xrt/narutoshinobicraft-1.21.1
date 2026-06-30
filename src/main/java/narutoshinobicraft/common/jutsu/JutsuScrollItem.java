@@ -10,7 +10,6 @@ import narutoshinobicraft.common.jutsu.cast.JutsuCastValidator.UseGate;
 import narutoshinobicraft.common.jutsu.helpers.JutsuChargeEffects;
 import narutoshinobicraft.common.jutsu.helpers.JutsuPowerCalculator;
 import narutoshinobicraft.common.jutsu.support.JutsuScrollTooltip;
-import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -84,9 +83,7 @@ public class JutsuScrollItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return JutsuRegistry.findCurrentEntry(stack)
-            .map(entry -> entry.definition().resolvedMaxChargeTicks())
-            .orElse(JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION);
+        return JutsuPowerCalculator.DEFAULT_MAX_USE_DURATION;
     }
 
     @Override
