@@ -10,6 +10,7 @@ import narutoshinobicraft.common.jutsu.action.impl.SequenceAction;
 import narutoshinobicraft.common.jutsu.action.impl.SpawnProjectileAction;
 import narutoshinobicraft.common.registry.DispatchRegistry;
 
+@SuppressWarnings("null")
 public final class ActionRegistry {
     private static final DispatchRegistry<JutsuAction> REGISTRY =
         new DispatchRegistry<>("jutsu_action", JutsuAction::codec);

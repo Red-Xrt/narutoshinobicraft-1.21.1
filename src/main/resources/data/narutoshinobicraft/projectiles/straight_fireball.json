@@ -10,7 +10,7 @@
   "on_fly": ["narutoshinobicraft:fireball_trail"],
   "on_hit": [
     { "type": "narutoshinobicraft:damage", "amount": 6.0, "scale_with_power": false },
-    { "type": "narutoshinobicraft:knockback", "strength": 0.5 }
+    { "type": "narutoshinobicraft:displace", "mode": "push", "strength": 1.5, "range": 6.0 }
   ],
   "width": 0.5,
   "height": 0.5,

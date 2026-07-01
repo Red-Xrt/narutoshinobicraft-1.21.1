@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.power;
 
 import narutoshinobicraft.common.data.attachments.PlayersChakra;
 import narutoshinobicraft.common.jutsu.api.JutsuDefinition;

@@ -1,6 +1,7 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.gameplay;
 
 import narutoshinobicraft.common.data.attachments.PlayerProcess;
+import narutoshinobicraft.common.jutsu.helpers.power.JutsuChargeModifiers;
 import narutoshinobicraft.common.registry.AttachmentRegistry;
 import net.minecraft.world.entity.player.Player;
 

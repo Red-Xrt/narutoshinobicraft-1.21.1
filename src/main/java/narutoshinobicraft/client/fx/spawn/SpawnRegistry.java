@@ -3,6 +3,7 @@ package narutoshinobicraft.client.fx.spawn;
 import com.mojang.serialization.Codec;
 import narutoshinobicraft.common.registry.DispatchRegistry;
 
+@SuppressWarnings("null")
 public final class SpawnRegistry {
     private static final DispatchRegistry<SpawnPattern> REGISTRY =
         new DispatchRegistry<>("fx_spawn", SpawnPattern::codec);

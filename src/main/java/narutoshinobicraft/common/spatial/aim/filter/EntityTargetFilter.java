@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.spatial.aim.utils;
+package narutoshinobicraft.common.spatial.aim.filter;
 
 public enum EntityTargetFilter {
     only_enemy,

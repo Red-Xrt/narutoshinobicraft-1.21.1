@@ -3,8 +3,8 @@ package narutoshinobicraft.common.spatial.aim;
 import java.util.function.Predicate;
 
 import narutoshinobicraft.common.data.component.JutsuContext;
-import narutoshinobicraft.common.spatial.aim.utils.EntityTargetFilter;
-import narutoshinobicraft.common.spatial.query.RayQueries;
+import narutoshinobicraft.common.spatial.aim.filter.EntityTargetFilter;
+import narutoshinobicraft.common.spatial.query.ray.RayQueries;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;

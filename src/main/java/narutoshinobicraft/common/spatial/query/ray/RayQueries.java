@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.spatial.query;
+package narutoshinobicraft.common.spatial.query.ray;
 
 import java.util.function.Predicate;
 

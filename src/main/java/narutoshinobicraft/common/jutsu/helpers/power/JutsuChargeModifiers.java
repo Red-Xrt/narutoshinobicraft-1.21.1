@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.power;
 
 import java.util.Map;
 import net.minecraft.resources.ResourceLocation;

@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import narutoshinobicraft.common.jutsu.effect.api.EffectContext;
 import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
-import narutoshinobicraft.common.jutsu.helpers.JutsuClientEffects;
+import narutoshinobicraft.common.jutsu.helpers.client.JutsuClientEffects;
 import narutoshinobicraft.common.jutsu.projectile.behavior.api.ProjectileBehavior;
 import narutoshinobicraft.common.registry.EntityRegistry;
 import net.minecraft.nbt.CompoundTag;

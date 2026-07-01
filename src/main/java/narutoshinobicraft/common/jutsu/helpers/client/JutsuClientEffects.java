@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.client;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;

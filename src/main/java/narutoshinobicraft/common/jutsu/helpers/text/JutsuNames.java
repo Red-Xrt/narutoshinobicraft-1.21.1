@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.text;
 
 import narutoshinobicraft.common.registry.JutsuRegistry;
 import net.minecraft.network.chat.Component;

@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 
 import narutoshinobicraft.common.data.component.JutsuStackOps;
 import narutoshinobicraft.common.jutsu.cast.JutsuCastValidator;
-import narutoshinobicraft.common.jutsu.helpers.JutsuNames;
+import narutoshinobicraft.common.jutsu.helpers.text.JutsuNames;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

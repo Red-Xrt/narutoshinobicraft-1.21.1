@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.client;
 
 import narutoshinobicraft.common.registry.SoundRegistry;
 import net.minecraft.sounds.SoundSource;

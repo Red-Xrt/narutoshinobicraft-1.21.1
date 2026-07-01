@@ -6,7 +6,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import narutoshinobicraft.common.spatial.aim.utils.EntityTargetFilter;
+import narutoshinobicraft.common.spatial.aim.filter.EntityTargetFilter;
 
 @SuppressWarnings("null")
 public record AimSpec(double range, double hitboxGrow, boolean stopOnLiquid, EntityTargetFilter targetFilter) {

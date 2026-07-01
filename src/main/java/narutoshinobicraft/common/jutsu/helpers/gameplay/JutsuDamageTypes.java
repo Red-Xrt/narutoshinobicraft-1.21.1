@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.gameplay;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

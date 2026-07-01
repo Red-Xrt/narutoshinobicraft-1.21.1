@@ -1,4 +1,4 @@
-package narutoshinobicraft.common.jutsu.helpers;
+package narutoshinobicraft.common.jutsu.helpers.power;
 
 public record JutsuPowerContext(
     int timeLeft,

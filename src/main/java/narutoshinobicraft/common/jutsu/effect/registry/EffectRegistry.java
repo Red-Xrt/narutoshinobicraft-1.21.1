@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 
 import narutoshinobicraft.common.jutsu.effect.api.JutsuEffect;
 import narutoshinobicraft.common.jutsu.effect.impl.DamageEffect;
+import narutoshinobicraft.common.jutsu.effect.impl.DisplaceEffect;
 import narutoshinobicraft.common.jutsu.effect.impl.KnockbackEffect;
 import narutoshinobicraft.common.registry.DispatchRegistry;
 
@@ -19,6 +20,7 @@ public final class EffectRegistry {
     static {
         REGISTRY.register("narutoshinobicraft:damage", DamageEffect.CODEC);
         REGISTRY.register("narutoshinobicraft:knockback", KnockbackEffect.CODEC);
+        REGISTRY.register("narutoshinobicraft:displace", DisplaceEffect.CODEC);
     }
 
     /** JSON dispatch codec for any effect, keyed on the "type" field. */

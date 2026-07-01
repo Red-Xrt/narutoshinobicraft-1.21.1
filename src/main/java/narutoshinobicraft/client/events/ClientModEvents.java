@@ -9,7 +9,7 @@ import narutoshinobicraft.client.fx.speck.SpeckOptions;
 import narutoshinobicraft.client.fx.speck.register.SpeckTypeRegistry;
 import narutoshinobicraft.common.jutsu.data.JutsuDefinitionManager;
 import narutoshinobicraft.common.jutsu.data.ScrollPresetManagerLoader;
-import narutoshinobicraft.common.jutsu.helpers.JutsuClientEffects;
+import narutoshinobicraft.common.jutsu.helpers.client.JutsuClientEffects;
 import narutoshinobicraft.common.registry.EntityRegistry;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.neoforged.api.distmarker.Dist;
